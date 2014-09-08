@@ -1,0 +1,20 @@
+.sonata-bc .navbar-search {
+	margin-right: 30px;
+}
+
+.sonata-bc h2 {
+	margin: 0 0 10px 0;
+}
+
+.right-side > .content-header {
+	padding-bottom: 10px;
+}
+
+.right-side > .content-actions {
+	padding: 20px 15px 0;
+	background: #f9f9f9;
+}
+
+.box-content {
+	padding-bottom: 10px;
+}

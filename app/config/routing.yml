@@ -1,0 +1,18 @@
+#_internal:
+#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#   prefix:   /_internal
+
+#_imagine:
+#    resource: .
+#    type:     imagine
+
+_front:
+    resource: routing_front.yml
+
+_admin:
+    resource: routing_admin.yml
+    prefix:   /admin
+
+_api:
+    resource: routing_api.yml
+    prefix:   /api

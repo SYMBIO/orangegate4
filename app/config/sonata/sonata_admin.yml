@@ -1,0 +1,90 @@
+#
+# more information can be found here http://sonata-project.org/bundles/admin
+#
+sonata_admin:
+    # default value, change it to sonata.admin.security.handler.acl to use ACL
+    security:
+        handler: sonata.admin.security.handler.acl
+        # acl security information
+        information:
+            GUEST:    [VIEW, LIST]
+            STAFF:    [EDIT, LIST, CREATE]
+            EDITOR:   [OPERATOR, EXPORT]
+            ADMIN:    [MASTER]
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+
+    title:      OrangeGate4
+
+    options:
+        html5_validate: false # does not use html5 validation
+        pager_links: 5 # pager max links to display
+        title_mode: single_text
+
+    templates:
+        layout:  SymbioOrangeGateAdminBundle::layout.html.twig
+
+    dashboard:
+        blocks:
+            - { position: left, type: sonata.admin.block.admin_list }
+#            - { position: right, type: sonata.admin_doctrine_orm.block.audit}
+#            - { position: top, type: sonata.block.service.text, settings: { content: '<h2>Welcome to the OrangeGate4 CMS!</h2>'} }
+            - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
+            - { position: right, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 7, mode: admin }}
+            - { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 7, mode: admin }}
+#            - { position: right, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 5, mode: admin }}
+#            - { position: right, type: sonata.customer.block.recent_customers, settings: { title: Recent Customers, number: 5, mode: admin }}
+
+        groups:
+            sonata.admin.group.content:
+                label:           sonata_content
+                label_catalogue: SymbioOrangeGateAdminBundle
+                icon: '<i class="fa fa-th"></i>'
+                items:
+                    - sonata.news.admin.comment
+                    - sonata.news.admin.post
+                    - sonata.media.admin.media
+                    - sonata.media.admin.gallery
+                    - sonata.comment.admin.thread
+            sonata.admin.group.site:
+                label:           sonata_site
+                label_catalogue: SymbioOrangeGateAdminBundle
+                icon: '<i class="fa fa-puzzle-piece"></i>'
+                items:
+                    - sonata.page.admin.page
+                    - sonata.page.admin.site
+            #sonata.admin.group.ecommerce:
+            #    label:           sonata_ecommerce
+            #    label_catalogue: SonataAdminBundle
+            #    items:
+            #        - sonata.customer.admin.customer
+            #        - sonata.invoice.admin.invoice
+            #        - sonata.order.admin.order
+            #        - sonata.product.admin.product
+            #sonata.admin.group.classification:
+            #    label:           sonata_classification
+            #    label_catalogue: SonataClassificationBundle
+            #    items:
+            #        - sonata.classification.admin.category
+            #        - sonata.classification.admin.tag
+            #        - sonata.classification.admin.collection
+            sonata.admin.group.administration:
+                label:           sonata_administration
+                label_catalogue: SonataAdminBundle
+                icon: '<i class="fa fa-gears"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+                    - sonata.notification.admin.message
+
+#sonata_doctrine_phpcr_admin:
+#    document_tree_options:
+        # Depth to which to fetch tree children when rendering the initial tree
+#        depth:                2
+        # Exact check if document has children. For large trees, set to false for better performance, but user might needs to click on expand to see there are no children.
+#        precise_children:     true
+        # Whether moving a node in the tree asks for confirmation.
+#        confirm_move:         true

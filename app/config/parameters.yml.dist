@@ -1,0 +1,28 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     null
+    database_name:     orangegate4
+    database_user:     root
+    database_password: null
+
+    #phpcr_backend:
+    #    # use Jackalope Doctrine DBAL
+    #    type: doctrinedbal
+    #    connection: default
+    #    caches:
+    #        meta: doctrine_cache.providers.phpcr_meta
+    #        nodes: doctrine_cache.providers.phpcr_nodes
+    #phpcr_workspace:   default
+    #phpcr_user:        admin
+    #phpcr_password:    admin
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    sonata.page.admin.page.class: Symbio\OrangeGate\PageBundle\Admin\PageAdmin
