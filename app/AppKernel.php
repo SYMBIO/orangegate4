@@ -31,31 +31,21 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-
-            // Symfony CMF Standard Edition Bundles
-            //new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
             new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
-            //new Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
-            //new Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
-            //new Symfony\Cmf\Bundle\SimpleCmsBundle\CmfSimpleCmsBundle(),
-            //new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
-            //new Symfony\Cmf\Bundle\CreateBundle\CmfCreateBundle(),
-            //new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            //new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
-            //new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
 
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
 
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
             // USER
             new FOS\UserBundle\FOSUserBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
-            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Symbio\OrangeGate\UserBundle\SymbioOrangeGateUserBundle(),
 
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
@@ -66,35 +56,37 @@ class AppKernel extends Kernel
             new Sonata\PageBundle\SonataPageBundle(),
             new Symbio\OrangeGate\PageBundle\SymbioOrangeGatePageBundle(),
             new Sonata\NewsBundle\SonataNewsBundle(),
-            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+            new Symbio\OrangeGate\NewsBundle\SymbioOrangeGateNewsBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
-            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Symbio\OrangeGate\MediaBundle\SymbioOrangeGateMediaBundle(),
 
+            // formatter
             //new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new CoopTilleuls\Bundle\CKEditorSonataMediaBundle\CoopTilleulsCKEditorSonataMediaBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Sonata\FormatterBundle\SonataFormatterBundle(),
 
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Symbio\OrangeGate\AdminBundle\SymbioOrangeGateAdminBundle(),
-            #new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-            //new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
+            new Symbio\OrangeGate\DoctrineORMAdminBundle\SymbioOrangeGateDoctrineORMAdminBundle(),
             new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
 
             // SONATA CORE & HELPER BUNDLES
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            //new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
-            new Sonata\FormatterBundle\SonataFormatterBundle(),
             new Sonata\CacheBundle\SonataCacheBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
             new Sonata\ClassificationBundle\SonataClassificationBundle(),
-            new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
+            new Symbio\OrangeGate\ClassificationBundle\SymbioOrangeGateClassificationBundle(),
             new Sonata\NotificationBundle\SonataNotificationBundle(),
-            new Application\Sonata\NotificationBundle\ApplicationSonataNotificationBundle(),
+            new Symbio\OrangeGate\NotificationBundle\SymbioOrangeGateNotificationBundle(),
 
             // E-COMMERCE
+            /*
             new Sonata\BasketBundle\SonataBasketBundle(),
             new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
             new Sonata\CustomerBundle\SonataCustomerBundle(),
@@ -113,18 +105,20 @@ class AppKernel extends Kernel
             new FOS\CommentBundle\FOSCommentBundle(),
             new Sonata\CommentBundle\SonataCommentBundle(),
             new Application\Sonata\CommentBundle\ApplicationSonataCommentBundle(),
+            */
 
             // Search Integration
             //new FOS\ElasticaBundle\FOSElasticaBundle(),
 
             new Spy\TimelineBundle\SpyTimelineBundle(),
             new Sonata\TimelineBundle\SonataTimelineBundle(),
-            new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle(),
-            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Symbio\OrangeGate\TimelineBundle\SymbioOrangeGateTimelineBundle(),
 
-            new Sonata\Bundle\QABundle\SonataQABundle(),
-            new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
-            new CBRE\DefaultBundle\CBREDefaultBundle(),
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
+            new Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
+
+            //new Hearsay\RequireJSBundle\HearsayRequireJSBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -4,10 +4,10 @@ spy_timeline:
             object_manager: doctrine.orm.entity_manager
             classes:
                 query_builder: ~ # Spy\TimelineBundle\Driver\ORM\QueryBuilder\QueryBuilder
-                timeline:         Application\Sonata\TimelineBundle\Entity\Timeline
-                action:           Application\Sonata\TimelineBundle\Entity\Action
-                component:        Application\Sonata\TimelineBundle\Entity\Component
-                action_component: Application\Sonata\TimelineBundle\Entity\ActionComponent
+                timeline:         Symbio\OrangeGate\TimelineBundle\Entity\Timeline
+                action:           Symbio\OrangeGate\TimelineBundle\Entity\Action
+                component:        Symbio\OrangeGate\TimelineBundle\Entity\Component
+                action_component: Symbio\OrangeGate\TimelineBundle\Entity\ActionComponent
 
     filters:
         data_hydrator:

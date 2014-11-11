@@ -1,0 +1,17 @@
+services:
+    orangegate.user.admin.user:
+        class: Symbio\OrangeGate\UserBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administration, label: users }
+        arguments: [null, Symbio\OrangeGate\UserBundle\Entity\User, %sonata.user.admin.user.controller%]
+        calls:
+            - [setUserManager, [@fos_user.user_manager]]
+            - [setTranslationDomain, [%sonata.user.admin.user.translation_domain%]]
+
+    orangegate.user.admin.group:
+        class: Symbio\OrangeGate\UserBundle\Admin\GroupAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administration, label: groups }
+        arguments: [null, Symbio\OrangeGate\UserBundle\Entity\Group, %sonata.user.admin.group.controller%]
+        calls:
+            - [setTranslationDomain, [%sonata.user.admin.group.translation_domain%]]

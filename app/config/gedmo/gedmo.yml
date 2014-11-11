@@ -1,0 +1,10 @@
+parameters:
+    a2lix_translation_form.gedmo.listener.locale.class: A2lix\TranslationFormBundle\Util\Gedmo\EventListener\LocaleListener
+
+services:
+    a2lix_translation_form.gedmo.listener.locale:
+        class: %a2lix_translation_form.gedmo.listener.locale.class%"
+        tags:
+            - { name: kernel.event_subscriber }
+        arguments: [@gedmo.listener.translatable]
+

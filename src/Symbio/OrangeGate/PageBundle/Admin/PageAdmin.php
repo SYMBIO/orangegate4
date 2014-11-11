@@ -117,9 +117,9 @@ class PageAdmin extends Admin
 
         // define group zoning
         $formMapper
-             ->with($this->trans('form_page.group_main_label'), array('class' => 'col-md-6'))
-             ->with($this->trans('form_page.group_seo_label'), array('class' => 'col-md-6'))
-             ->with($this->trans('form_page.group_advanced_label'), array('class' => 'col-md-6'))
+             ->with($this->trans('form_page.group_main_label'), array('class' => 'col-md-6'))->end()
+             ->with($this->trans('form_page.group_seo_label'), array('class' => 'col-md-6'))->end()
+             ->with($this->trans('form_page.group_advanced_label'), array('class' => 'col-md-6'))->end()
         ;
 
 
@@ -144,7 +144,7 @@ class PageAdmin extends Admin
                 ->add('enabled', null, array('required' => false))
                 ->add('position')
             ->end();
-
+/*
         if ($this->hasSubject() && !$this->getSubject()->isInternal()) {
             $formMapper
                 ->with($this->trans('form_page.group_main_label'))
@@ -152,7 +152,7 @@ class PageAdmin extends Admin
                 ->end()
             ;
         }
-
+*/
         $formMapper
             ->with($this->trans('form_page.group_main_label'))
                 ->add('templateCode', 'sonata_page_template', array('required' => true))
@@ -182,7 +182,7 @@ class PageAdmin extends Admin
             $formMapper
                 ->with($this->trans('form_page.group_main_label'))
                     ->add('pageAlias', null, array('required' => false))
-                    ->add('target', 'sonata_page_selector', array(
+                    /*->add('target', 'sonata_page_selector', array(
                         'page'          => $this->getSubject() ?: null,
                         'site'          => $this->getSubject() ? $this->getSubject()->getSite() : null,
                         'model_manager' => $this->getModelManager(),
@@ -193,7 +193,7 @@ class PageAdmin extends Admin
                         'link_parameters' => array(
                             'siteId' => $this->getSubject() ? $this->getSubject()->getSite()->getId() : null
                         )
-                    ))
+                    ))*/
                 ->end()
             ;
         }
@@ -208,7 +208,7 @@ class PageAdmin extends Admin
         }
 
         $formMapper
-            ->with($this->trans('form_page.group_seo_label'), array('collapsed' => true))
+            ->with($this->trans('form_page.group_seo_label'), array('collapsed' => false))
                 ->add('title', null, array('required' => false))
                 ->add('metaKeyword', 'textarea', array('required' => false))
                 ->add('metaDescription', 'textarea', array('required' => false))
@@ -217,13 +217,13 @@ class PageAdmin extends Admin
 
         if ($this->hasSubject() && !$this->getSubject()->isCms()) {
             $formMapper
-                ->with($this->trans('form_page.group_advanced_label'), array('collapsed' => true))
+                ->with($this->trans('form_page.group_advanced_label'), array('collapsed' => false))
                     ->add('decorate', null,  array('required' => false))
                 ->end();
         }
 
         $formMapper
-            ->with($this->trans('form_page.group_advanced_label'), array('collapsed' => true))
+            ->with($this->trans('form_page.group_advanced_label'), array('collapsed' => false))
                 ->add('javascript', null,  array('required' => false))
                 ->add('stylesheet', null, array('required' => false))
                 ->add('rawHeaders', null, array('required' => false))
@@ -246,27 +246,28 @@ class PageAdmin extends Admin
 
         $admin = $this->isChild() ? $this->getParent() : $this;
 
-
         $id = $admin->getRequest()->get('id');
 
-        $menu->addChild(
+        $current_route = $admin->getRequest()->get('_route');
+
+        $editNode = $menu->addChild(
             $this->trans('sidemenu.link_edit_page'),
-            array('uri' => $admin->generateUrl('edit', array('id' => $id)))
+            array('uri' => $admin->generateUrl('edit', array('id' => $id)), 'attributes' => array('class' => $admin->getRequest()->get('_route') == 'admin_orangegate_page_page_edit' ? 'active' : ''))
         );
 
         $menu->addChild(
             $this->trans('sidemenu.link_compose_page'),
-            array('uri' => $admin->generateUrl('compose', array('id' => $id)))
+            array('uri' => $admin->generateUrl('compose', array('id' => $id)), 'attributes' => array('class' => $admin->getRequest()->get('_route') == 'admin_orangegate_page_page_compose' ? 'active' : ''))
         );
 
         $menu->addChild(
             $this->trans('sidemenu.link_list_blocks'),
-            array('uri' => $admin->generateUrl('sonata.page.admin.block.list', array('id' => $id)))
+            array('uri' => $admin->generateUrl('sonata.page.admin.block.list', array('id' => $id)), 'attributes' => array('class' => $admin->getRequest()->get('_route') == 'admin_orangegate_page_page_block_list' ? 'active' : ''))
         );
 
         $menu->addChild(
             $this->trans('sidemenu.link_list_snapshots'),
-            array('uri' => $admin->generateUrl('sonata.page.admin.snapshot.list', array('id' => $id)))
+            array('uri' => $admin->generateUrl('sonata.page.admin.snapshot.list', array('id' => $id)), 'attributes' => array('class' => $admin->getRequest()->get('_route') == 'admin_orangegate_page_page_snapshot_list' ? 'active' : ''))
         );
 
         if (!$this->getSubject()->isHybrid() && !$this->getSubject()->isInternal()) {
@@ -279,6 +280,19 @@ class PageAdmin extends Admin
             } catch (\Exception $e) {
                 // avoid crashing the admin if the route is not setup correctly
 //                throw $e;
+            }
+        }
+
+        foreach ($this->getSites() as $site) {
+            if ($site->getId() !== $this->getSubject()->getSite()->getId()) {
+                $page = $this->pageManager->findOneBy(array('site' => $site, 'pageAlias' => $this->getSubject()->getPageAlias()));
+
+                if ($page) {
+                    $menu->addChild(
+                        '<em class="flag flag-'.$site->getLocale().'">'.$site->getLocale().'</em>',
+                        array('uri' => $admin->generateUrl('compose', array('id' => $page->getId())))
+                    );
+                }
             }
         }
     }

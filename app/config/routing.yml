@@ -13,6 +13,20 @@ _admin:
     resource: routing_admin.yml
     prefix:   /admin
 
+admin_without_locale:
+    pattern: /admin
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sonata_admin_dashboard
+        permanent: true
+
+admin_dashboard_without_locale:
+    pattern: /admin/dashboard
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sonata_admin_dashboard
+        permanent: true
+
 _api:
     resource: routing_api.yml
     prefix:   /api

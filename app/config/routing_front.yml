@@ -1,6 +1,6 @@
-# these 2 references : sonata_demo and sonata_qa can be safely removed
-sonata_user_security:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
+orangegate_news_post:
+    resource: "@SymbioOrangeGateNewsBundle/Controller/PostController.php"
+    type:     annotation
 
 sonata_user_resetting:
     resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
@@ -10,13 +10,9 @@ sonata_user_profile:
     resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
     prefix: /profile
 
-sonata_user_register:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
-    prefix: /register
-
-sonata_user_change_password:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
-    prefix: /profile
+sonata_page_page:
+    resource: '@SonataPageBundle/Resources/config/routing/page.xml'
+    prefix: /
 
 sonata_cache_cache:
     resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
@@ -38,40 +34,35 @@ sonata_media_media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
 
-sonata_customer:
-    resource: @SonataCustomerBundle/Resources/config/routing/customer.xml
-    prefix: /shop/user
+#sonata_customer:
+#    resource: @SonataCustomerBundle/Resources/config/routing/customer.xml
+#    prefix: /shop/user
 
-sonata_basket:
-    resource: @SonataBasketBundle/Resources/config/routing/basket.xml
-    prefix: /shop/basket
+#sonata_basket:
+#    resource: @SonataBasketBundle/Resources/config/routing/basket.xml
+#    prefix: /shop/basket
 
-sonata_order:
-    resource: @SonataOrderBundle/Resources/config/routing/order.xml
-    prefix: /shop/user/order
+#sonata_order:
+#    resource: @SonataOrderBundle/Resources/config/routing/order.xml
+#    prefix: /shop/user/order
 
-sonata_product_catalog:
-    resource: @SonataProductBundle/Resources/config/routing/catalog.xml
-    prefix: /shop/catalog
+#sonata_product_catalog:
+#    resource: @SonataProductBundle/Resources/config/routing/catalog.xml
+#    prefix: /shop/catalog
 
-sonata_product:
-    resource: @SonataProductBundle/Resources/config/routing/product.xml
-    prefix: /shop/product
+#sonata_product:
+#    resource: @SonataProductBundle/Resources/config/routing/product.xml
+#    prefix: /shop/product
 
-sonata_payment:
-    resource: @SonataPaymentBundle/Resources/config/routing/payment.xml
-    prefix: /shop/payment
+#sonata_payment:
+#    resource: @SonataPaymentBundle/Resources/config/routing/payment.xml
+#    prefix: /shop/payment
 
-sonata_invoice:
-    resource: @SonataInvoiceBundle/Resources/config/routing/invoice.xml
-    prefix: /shop/user/invoice
+#sonata_invoice:
+#    resource: @SonataInvoiceBundle/Resources/config/routing/invoice.xml
+#    prefix: /shop/user/invoice
 
-blog:
+sonata_news:
     resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
-    prefix: /blog
+    prefix: /news
 
-fos_comment:
-    type: rest
-    resource: "@FOSCommentBundle/Resources/config/routing.yml"
-    prefix: /comments
-    defaults: { _format: html }

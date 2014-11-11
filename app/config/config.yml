@@ -9,8 +9,8 @@ imports:
     - { resource: knp/knp_paginator.yml }
 
     # FriendOfSymfony Bundles
-    - { resource: fos/fos_comment.yml }
-    - { resource: fos/fos_rest.yml }
+    #- { resource: fos/fos_comment.yml }
+    #- { resource: fos/fos_rest.yml }
     - { resource: fos/fos_user.yml }
     #- { resource: fos/fos_elastica.yml }
 
@@ -28,20 +28,23 @@ imports:
     # Sonata Feature Bundles
     - { resource: sonata/sonata_admin.yml }
     - { resource: sonata/sonata_page.yml }
+    - { resource: sonata/sonata_classification.yml }
     - { resource: sonata/sonata_media.yml }
     - { resource: sonata/sonata_news.yml }
     - { resource: sonata/sonata_user.yml }
     - { resource: sonata/sonata_notification.yml }
 
     # Sonata e-commerce bundles
-    - { resource: sonata/sonata_price.yml }
-    - { resource: sonata/sonata_order.yml }
-    - { resource: sonata/sonata_payment.yml }
-    - { resource: sonata/sonata_product.yml }
-    - { resource: sonata/sonata_invoice.yml }
-    - { resource: sonata/sonata_delivery.yml }
-    - { resource: sonata/sonata_customer.yml }
-    - { resource: sonata/sonata_basket.yml }
+    #- { resource: sonata/sonata_price.yml }
+    #- { resource: sonata/sonata_order.yml }
+    #- { resource: sonata/sonata_payment.yml }
+    #- { resource: sonata/sonata_product.yml }
+    #- { resource: sonata/sonata_invoice.yml }
+    #- { resource: sonata/sonata_delivery.yml }
+    #- { resource: sonata/sonata_customer.yml }
+    #- { resource: sonata/sonata_basket.yml }
+
+    - { resource: gedmo/doctrine_extensions.yml }
 
 framework:
     #esi:             ~
@@ -69,6 +72,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'SonataCoreBundle:Form:datepicker.html.twig'
+            - 'SonataFormatterBundle:Form:formatter.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -103,6 +110,32 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        mappings:
+            translatable:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Translatable\Entity
+                # make sure vendor library location is correct
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity/MappedSuperclass"
+            loggable:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Loggable\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+            tree:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Tree\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+        dql:
+            numeric_functions:
+                sin: Symbio\OrangeGate\AdminBundle\DQL\Sin
+                asin: Symbio\OrangeGate\AdminBundle\DQL\Asin
+                cos: Symbio\OrangeGate\AdminBundle\DQL\Cos
+                acos: Symbio\OrangeGate\AdminBundle\DQL\Acos
+                radians: Symbio\OrangeGate\AdminBundle\DQL\Radians
+                power: Symbio\OrangeGate\AdminBundle\DQL\Power
+                pi: Symbio\OrangeGate\AdminBundle\DQL\Pi
 
 # Menu Configuration
 knp_menu:
@@ -115,3 +148,77 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+lunetics_locale:
+    allowed_locales:
+        - en
+        - cs
+    guessing_order:
+        - query
+        - router
+        - session
+        - cookie
+        - browser
+    switcher:
+        template: SymbioOrangeGateAdminBundle:Core:language_switcher.html.twig
+
+# hearsay_require_js:
+#     require_js_src:      /bundles/cbredefault/js/vendor/requirejs/require.js
+#     initialize_template: HearsayRequireJSBundle::initialize.html.twig
+#     base_url:            js
+#     base_dir:            %kernel.root_dir%/../src/CBRE/DefaultBundle/Resources/public/js
+#     optimizer:
+#         path:                    %kernel.root_dir%/../src/CBREDefaultBundle/Resources/public/js/vendor/r.js/dist/r.js
+#         hide_unoptimized_assets: false
+#         almond_path:             ~
+
+ivory_ck_editor:
+    default_config: default
+    configs:
+        default:
+            filebrowserBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRouteParameters:
+                provider: sonata.media.provider.image
+            filebrowserUploadRoute: admin_orangegate_media_media_upload
+            filebrowserUploadRouteParameters:
+                provider: sonata.media.provider.file
+            filebrowserImageUploadRoute: admin_orangegate_media_media_upload
+            filebrowserImageUploadRouteParameters:
+                provider: sonata.media.provider.image
+                context: default
+        description:
+            toolbar: [ [ "Source", "-", "Bold", "Italic", '-', "Anchor", '-', 'PasteFromWord', '-', 'Undo', 'Redo', '-', "Maximize" ] ]
+            filebrowserBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRouteParameters:
+                provider: sonata.media.provider.image
+            filebrowserUploadRoute: admin_orangegate_media_media_upload
+            filebrowserUploadRouteParameters:
+                provider: sonata.media.provider.file
+            filebrowserImageUploadRoute: admin_orangegate_media_media_upload
+            filebrowserImageUploadRouteParameters:
+                provider: sonata.media.provider.image
+                context: news
+
+a2lix_translation_form:
+    locales: %symbio.orangegate.locales%
+    required_locales: []
+    templating: "SymbioOrangeGateAdminBundle:Form:translations.html.twig"
+
+parameters:
+    symbio.orangegate.locales: [cs, en]
+    sonata.page.admin.page.class: Symbio\OrangeGate\PageBundle\Admin\PageAdmin
+    sonata.page.admin.block.class: Symbio\OrangeGate\PageBundle\Admin\BlockAdmin
+    sonata.page.request_listener.class: Symbio\OrangeGate\PageBundle\Listener\RequestListener
+    sonata.page.service.default.class: Symbio\OrangeGate\PageBundle\Page\OrangeGatePageService
+    sonata.page.cms_manager.page.class: Symbio\OrangeGate\PageBundle\CmsManager\CmsPageManager
+    sonata.page.cms_manager.snapshot.class: Symbio\OrangeGate\PageBundle\CmsManager\CmsSnapshotManager
+    sonata.page.router.class: Symbio\OrangeGate\PageBundle\Route\CmsPageRouter
+    sonata.classification.admin.collection.class: Symbio\OrangeGate\ClassificationBundle\Admin\CollectionAdmin
+    sonata.user.admin.user.entity: Symbio\OrangeGate\UserBundle\Entity\User
+    sonata.user.admin.group.entity: Symbio\OrangeGate\UserBundle\Entity\Group
+    sonata.admin.object.manipulator.acl.admin.class: Symbio\OrangeGate\AdminBundle\Util\AdminObjectAclManipulator
+    sonata.news.admin.post.entity: Symbio\OrangeGate\NewsBundle\Entity\Post
+    sonata.news.admin.comment.entity: Symbio\OrangeGate\NewsBundle\Entity\Comment
+    sonata.media.resizer.simple.class: Symbio\OrangeGate\MediaBundle\Resizer\OrangeGateResizer

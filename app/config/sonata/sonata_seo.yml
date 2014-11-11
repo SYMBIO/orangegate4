@@ -5,7 +5,7 @@ sonata_seo:
     encoding:             UTF-8
     page:
         default:          sonata.seo.page.default
-        title:            Sonata Project
+        title:            default title#insert title of site
         metas:
             name:
                 keywords:             foo bar
@@ -13,14 +13,10 @@ sonata_seo:
                 robots:               index, follow
 
             property:
-                # Facebook application settings
                 #'fb:app_id':          XXXXXX
                 #'fb:admins':          admin1, admin2
-
-                # Open Graph information
-                # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
-                'og:site_name':       Sonata Project Sandbox
-                'og:description':     A demo of the some rich bundles for your Symfony2 projects
+                'og:site_name':       default name #insert site name
+                'og:description':     default description #insert site description
 
             http-equiv:
                 'Content-Type':         text/html; charset=utf-8
@@ -31,7 +27,7 @@ sonata_seo:
 
     sitemap:
         services:
-            - sonata.product.seo_iterator
+            #- sonata.product.seo_iterator
         doctrine_orm:
             # media
             - { connection: doctrine.dbal.default_connection, route: sonata_media_view, parameters: {id: null}, query: "SELECT id, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM media__media WHERE enabled = true" }
@@ -40,6 +36,6 @@ sonata_seo:
             # page - works only for one site, please adapt the code if required
             - { connection: doctrine.dbal.default_connection, route: page_slug, parameters: {path: null}, query: "SELECT url as path, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM page__snapshot WHERE route_name = 'page_slug' AND enabled = 1 AND (publication_date_start IS NULL OR publication_date_start <= NOW())" }
             # product categories
-            - { connection: doctrine.dbal.default_connection, route: sonata_catalog_category, parameters: {category_id: null, category_slug: null}, query: "SELECT id as category_id, slug as category_slug, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM classification__category WHERE enabled = true" }
+            #- { connection: doctrine.dbal.default_connection, route: sonata_catalog_category, parameters: {category_id: null, category_slug: null}, query: "SELECT id as category_id, slug as category_slug, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM classification__category WHERE enabled = true" }
             # products
-            - { connection: doctrine.dbal.default_connection, route: sonata_product_view, parameters: {productId: null, slug: null}, query: "SELECT id as productId, slug, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM product__product WHERE enabled = true" }
+            #- { connection: doctrine.dbal.default_connection, route: sonata_product_view, parameters: {productId: null, slug: null}, query: "SELECT id as productId, slug, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM product__product WHERE enabled = true" }

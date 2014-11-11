@@ -17,7 +17,7 @@ sonata_admin:
         # permission related to the objects
         object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
 
-    title:      OrangeGate4
+    title:      OrangeGate4 Admin
 
     options:
         html5_validate: false # does not use html5 validation
@@ -27,14 +27,55 @@ sonata_admin:
     templates:
         layout:  SymbioOrangeGateAdminBundle::layout.html.twig
 
+    assets:
+        stylesheets:
+            - 'bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css'
+            - 'bundles/sonatacore/vendor/components-font-awesome/css/font-awesome.min.css'
+            - 'bundles/sonatacore/vendor/ionicons/css/ionicons.min.css'
+            - 'bundles/sonataadmin/vendor/AdminLTE/css/AdminLTE.css'
+            - 'bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
+            - 'bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css'
+            - 'bundles/sonatacore/vendor/select2/select2.css'
+            - 'bundles/sonatacore/vendor/select2/select2-bootstrap.css'
+            - 'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css'
+            - 'bundles/sonataformatter/markitup/skins/sonata/style.css'
+            - 'bundles/sonataformatter/markitup/sets/markdown/style.css'
+            - 'bundles/sonataformatter/markitup/sets/html/style.css'
+            - 'bundles/sonataformatter/markitup/sets/textile/style.css'
+            - 'bundles/sonataadmin/css/styles.css'
+            - 'bundles/sonataadmin/css/layout.css'
+            - 'bundles/sonataadmin/css/tree.css'
+            - 'bundles/symbioorangegateadmin/css/flags.css'
+            - 'bundles/symbioorangegateadmin/css/og.css'
+        javascripts:
+            - 'bundles/sonatacore/vendor/jquery/dist/jquery.min.js'
+            - 'bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js'
+            - 'bundles/sonatacore/vendor/moment/min/moment.min.js'
+            - 'bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.min.js'
+            - 'bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+            - 'bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js'
+            - 'bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js'
+            - 'bundles/sonataadmin/jquery/jquery.form.js'
+            - 'bundles/sonataadmin/jquery/jquery.confirmExit.js'
+            - 'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js'
+            - 'bundles/sonatacore/vendor/select2/select2.min.js'
+            - 'bundles/ivoryckeditor/ckeditor.js'
+            - 'bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js'
+            - 'bundles/sonataformatter/markitup/sets/markdown/set.js'
+            - 'bundles/sonataformatter/markitup/sets/html/set.js'
+            - 'bundles/sonataformatter/markitup/sets/textile/set.js'
+            - 'bundles/sonataadmin/App.js'
+            - 'bundles/sonataadmin/Admin.js'
+            - 'bundles/sonataadmin/treeview.js'
+
     dashboard:
         blocks:
             - { position: left, type: sonata.admin.block.admin_list }
 #            - { position: right, type: sonata.admin_doctrine_orm.block.audit}
 #            - { position: top, type: sonata.block.service.text, settings: { content: '<h2>Welcome to the OrangeGate4 CMS!</h2>'} }
-            - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
-            - { position: right, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 7, mode: admin }}
-            - { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 7, mode: admin }}
+            - { position: right, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 15 }}
+#            - { position: right, type: orangegate.news.block.recent_posts, settings: { title: Recent Posts, number: 3, mode: admin }}
+#            - { position: right, type: orangegate.news.block.recent_comments, settings: { title: Recent Comments, number: 5, mode: admin, template: SymbioOrangeGateNewsBundle:Block: }}
 #            - { position: right, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 5, mode: admin }}
 #            - { position: right, type: sonata.customer.block.recent_customers, settings: { title: Recent Customers, number: 5, mode: admin }}
 
@@ -44,11 +85,12 @@ sonata_admin:
                 label_catalogue: SymbioOrangeGateAdminBundle
                 icon: '<i class="fa fa-th"></i>'
                 items:
-                    - sonata.news.admin.comment
-                    - sonata.news.admin.post
-                    - sonata.media.admin.media
-                    - sonata.media.admin.gallery
-                    - sonata.comment.admin.thread
+                    - orangegate.news.admin.post
+                    #- orangegate.news.admin.comment
+                    - orangegate.media.admin.media
+                    #- orangegate.media.admin.gallery
+                    #- sonata.comment.admin.thread
+
             sonata.admin.group.site:
                 label:           sonata_site
                 label_catalogue: SymbioOrangeGateAdminBundle
@@ -56,6 +98,7 @@ sonata_admin:
                 items:
                     - sonata.page.admin.page
                     - sonata.page.admin.site
+
             #sonata.admin.group.ecommerce:
             #    label:           sonata_ecommerce
             #    label_catalogue: SonataAdminBundle
@@ -64,27 +107,21 @@ sonata_admin:
             #        - sonata.invoice.admin.invoice
             #        - sonata.order.admin.order
             #        - sonata.product.admin.product
+
             #sonata.admin.group.classification:
             #    label:           sonata_classification
             #    label_catalogue: SonataClassificationBundle
             #    items:
+            #        - sonata.classification.admin.context
             #        - sonata.classification.admin.category
-            #        - sonata.classification.admin.tag
+            #        - orangegate.classification.admin.tag
             #        - sonata.classification.admin.collection
+
             sonata.admin.group.administration:
                 label:           sonata_administration
                 label_catalogue: SonataAdminBundle
                 icon: '<i class="fa fa-gears"></i>'
                 items:
-                    - sonata.user.admin.user
-                    - sonata.user.admin.group
-                    - sonata.notification.admin.message
-
-#sonata_doctrine_phpcr_admin:
-#    document_tree_options:
-        # Depth to which to fetch tree children when rendering the initial tree
-#        depth:                2
-        # Exact check if document has children. For large trees, set to false for better performance, but user might needs to click on expand to see there are no children.
-#        precise_children:     true
-        # Whether moving a node in the tree asks for confirmation.
-#        confirm_move:         true
+                    - orangegate.user.admin.user
+                    - orangegate.user.admin.group
+                    #- sonata.notification.admin.message

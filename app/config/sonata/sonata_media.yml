@@ -3,29 +3,28 @@
 #
 sonata_media:
     db_driver:       doctrine_orm # | doctrine_mongodb
-    default_context: default
+    class:
+        media:              Symbio\OrangeGate\MediaBundle\Entity\Media
+        gallery:            Symbio\OrangeGate\MediaBundle\Entity\Gallery
+        gallery_has_media:  Symbio\OrangeGate\MediaBundle\Entity\GalleryHasMedia
+    default_context: news
     contexts:
-        default:  # the default context is mandatory
-            download:
-                mode: http # X-Sendfile | http
-            providers:
-                - sonata.media.provider.dailymotion
-                - sonata.media.provider.youtube
-                - sonata.media.provider.image
-                - sonata.media.provider.file
-                - sonata.media.provider.vimeo
-
-            formats:
-                small: { width: 100, quality: 100}
-                big:   { width: 970 , quality: 100}
-
         news:
             providers:
                 - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.youtube
 
             formats:
-                abstract: { width: 100, quality: 100}
+                abstract: { width: 220, height: 260, quality: 100}
                 wide:     { width: 820, quality: 100}
+
+        user:
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                thumb: { height: 150, quality: 100}
 
         sonata_collection:
             providers:
@@ -43,19 +42,10 @@ sonata_media:
                 preview: { width: 100, quality: 100}
                 wide:    { width: 820, quality: 100}
 
-        sonata_product:
-            providers:
-                - sonata.media.provider.image
-
-            formats:
-                preview:   { width: 100, quality: 100}
-                small:     { width: 300, quality: 100}
-                large:     { width: 750, quality: 100}
-
     cdn:
         # define the public base url for the uploaded media
         server:
-            path:      /uploads/media
+            path:     #insert path to media e.g. http://cbre.test.symbiodigital.com/uploads/media
 
     filesystem:
         # define where the uploaded file will be stored
@@ -70,6 +60,7 @@ sonata_media:
             resizer:    false
         image:
            thumbnail: sonata.media.thumbnail.format          # default value
+           resizer:   sonata.media.resizer.simple
 #           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
 #            thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
         vimeo:
@@ -80,10 +71,6 @@ sonata_media:
             thumbnail: sonata.media.thumbnail.format          # default value
 #           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
 #           thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
-        dailymotion:
-            thumbnail: sonata.media.thumbnail.format          # default value
-#           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
-#           thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
 
     pixlr:
         enabled:  true
@@ -91,8 +78,8 @@ sonata_media:
 
     resizer:
         simple:
-#            mode:  outbound
-            mode:  inset
+            mode:  outbound
+#            mode:  inset
 
 #
 # The LiipImagineBundle can be used if you want to convert on demand an image
@@ -175,5 +162,5 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    ApplicationSonataMediaBundle: ~
+                    SymbioOrangeGateMediaBundle: ~
                     SonataMediaBundle: ~

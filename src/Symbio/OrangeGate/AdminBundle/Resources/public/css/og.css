@@ -18,3 +18,48 @@
 .box-content {
 	padding-bottom: 10px;
 }
+
+.well.form-actions {
+	line-height: 36px;
+}
+
+.content > .alert {
+	margin-left: 0;
+}
+
+td.sonata-ba-list-label {
+	text-align: left;
+}
+
+.content-actions > .nav-tabs-custom {
+	margin-bottom: 0;
+}
+
+.modal .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.field-actions {
+	line-height: 36px;
+}
+
+.field-short-description {
+	border: none;
+	/*line-height: 18px;*/
+	padding: 0;
+	min-width: 0;
+}
+
+.nav-tabs-custom > .nav-tabs > li {
+	margin-right: 0;
+}
+
+@media (max-width: 767px) {
+	.navbar-nav>li {
+		float: left;
+	}
+	.navbar-nav>li>a>span {
+		display: none;
+	}
+}

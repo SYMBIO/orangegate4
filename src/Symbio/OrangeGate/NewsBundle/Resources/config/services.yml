@@ -1,0 +1,13 @@
+services:
+    orangegate.news.manager.post:
+        class: Symbio\OrangeGate\NewsBundle\Entity\PostManager
+        arguments: [Symbio\OrangeGate\NewsBundle\Entity\Post, @doctrine]
+
+    orangegate.news.permalink.generator:
+        class: Symbio\OrangeGate\NewsBundle\Permalink\DatePermalink
+
+    orangegate.news.twig.extension:
+        class: Symbio\OrangeGate\NewsBundle\Twig\Extension\NewsExtension
+        tags:
+            - { name: twig.extension }
+        arguments: [@router, @orangegate.news.permalink.generator]

@@ -6,3 +6,7 @@ doctrine:
                 mappings:
                     ApplicationSonataCustomerBundle: ~
                     SonataCustomerBundle: ~
+
+sonata_customer:
+    class:
+        user: Symbio\OrangeGate\UserBundle\Entity\User

@@ -12,7 +12,7 @@
 namespace Symbio\OrangeGate\PageBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
-use Sonata\AdminBundle\Admin\Admin;
+use Symbio\OrangeGate\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -53,10 +53,11 @@ class BlockAdmin extends Admin
      */
     protected function configureRoutes(RouteCollection $collection)
     {
+        parent::configureRoutes($collection);
+
         $collection->add('savePosition', 'save-position');
         $collection->add('view', $this->getRouterIdParameter().'/view');
         $collection->add('switchParent', 'switch-parent');
-
     }
 
     /**
@@ -111,11 +112,6 @@ class BlockAdmin extends Admin
             }
         }
 
-        $formMapper->with($this->trans('form.field_group_general'));
-
-        // add name on all forms
-        $formMapper->add('name');
-
         $isContainerRoot = $block && in_array($block->getType(), array('sonata.page.block.container', 'sonata.block.service.container')) && !$this->hasParentFieldDescription();
         $isStandardBlock = $block && !in_array($block->getType(), array('sonata.page.block.container', 'sonata.block.service.container')) && !$this->hasParentFieldDescription();
 
@@ -123,6 +119,8 @@ class BlockAdmin extends Admin
             $service = $this->blockManager->get($block);
 
             $containerBlockTypes = $this->containerBlockTypes;
+
+            $formMapper->with($this->trans('form.field_group_options'));
 
             // need to investigate on this case where $page == null ... this should not be possible
             if ($isStandardBlock && $page && !empty($containerBlockTypes)) {
@@ -139,13 +137,12 @@ class BlockAdmin extends Admin
                 ));
             }
 
-            $formMapper->add('enabled');
-
             if ($isStandardBlock) {
                 $formMapper->add('position', 'integer');
             }
 
-            $formMapper->with($this->trans('form.field_group_options'));
+            $formMapper->add('name');
+            //$formMapper->add('enabled');
 
             if ($block->getId() > 0) {
                 $service->buildEditForm($formMapper, $block);
@@ -155,11 +152,16 @@ class BlockAdmin extends Admin
 
         } else {
 
+            $formMapper->with($this->trans('form.field_group_general'));
+
+            // add name on all forms
+            $formMapper->add('name');
+
             $formMapper
                 ->add('type', 'sonata_block_service_choice', array(
                     'context' => 'sonata_page_bundle'
                 ))
-                ->add('enabled')
+                //->add('enabled')
                 ->add('position', 'integer');
         }
     }

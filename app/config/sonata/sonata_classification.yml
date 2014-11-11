@@ -1,0 +1,6 @@
+sonata_classification:
+    class:
+        context: Symbio\OrangeGate\ClassificationBundle\Entity\Context
+        category: Symbio\OrangeGate\ClassificationBundle\Entity\Category
+        tag: Symbio\OrangeGate\ClassificationBundle\Entity\Tag
+        collection: Symbio\OrangeGate\ClassificationBundle\Entity\Collection

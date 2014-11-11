@@ -2,7 +2,7 @@
 
 {% block title %}
     {% if admin.id(object) is not null %}
-        {{ "title_edit"|trans({'%name%': admin.toString(object)|truncate(15) }, 'SonataAdminBundle') }}
+        {{ "title_edit"|trans({'%name%': admin.toString(object)|truncate(25) }, 'SonataAdminBundle') }}
     {% else %}
         {{ "title_create"|trans({}, 'SonataAdminBundle') }}
     {% endif %}
@@ -13,13 +13,12 @@
 {% endblock %}
 
 {% block actions %}
-    <div class="btn-group">
+    <div class="btn-group">{% spaceless %}
         {% include 'SymbioOrangeGateAdminBundle:Button:show_button.html.twig' %}
         {% include 'SymbioOrangeGateAdminBundle:Button:history_button.html.twig' %}
         {% include 'SymbioOrangeGateAdminBundle:Button:acl_button.html.twig' %}
-    </div>
-    {% include 'SymbioOrangeGateAdminBundle:Button:list_button.html.twig' %}
-    {% include 'SymbioOrangeGateAdminBundle:Button:create_button.html.twig' %}
+    {% endspaceless %}</div>
+    {#% include 'SymbioOrangeGateAdminBundle:Button:list_button.html.twig' %#}
 {% endblock %}
 
 {% block tab_menu %}

@@ -17,6 +17,10 @@ sonata_news:
             from:     Test From
             template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
 
+    class:
+        post: Symbio\OrangeGate\NewsBundle\Entity\Post
+        comment: Symbio\OrangeGate\NewsBundle\Entity\Comment
+        user: Symbio\OrangeGate\UserBundle\Entity\User
 
 # Enable Doctrine to map the provided entities
 doctrine:
@@ -24,5 +28,20 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    ApplicationSonataNewsBundle: ~
+                    SymbioOrangeGateNewsBundle: ~
                     SonataNewsBundle: ~
+
+ivory_ck_editor:
+    configs:
+        news:
+            filebrowserBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRouteParameters:
+                provider: sonata.media.provider.image
+            filebrowserUploadRoute: admin_orangegate_media_media_upload
+            filebrowserUploadRouteParameters:
+                provider: sonata.media.provider.file
+            filebrowserImageUploadRoute: admin_orangegate_media_media_upload
+            filebrowserImageUploadRouteParameters:
+                provider: sonata.media.provider.image
+                context: news

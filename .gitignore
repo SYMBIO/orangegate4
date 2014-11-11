@@ -10,3 +10,7 @@
 /bin/
 /composer.phar
 *.sqlite
+*~
+.DS_Store
+._*
+.subl*

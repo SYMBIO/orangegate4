@@ -1,13 +1,3 @@
-{#
-
-This file is part of the Sonata package.
-
-(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
-
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code.
-
-#}
 {%- block sonata_page_html_tag -%}
 <!DOCTYPE html>
 <html {{ sonata_seo_html_attributes() }}>
@@ -139,32 +129,27 @@ file that was distributed with this source code.
         {% endblock %}
 
         {% block sonata_page_container %}
-            {% block page_container %}{% endblock %} {# Deprecated block #}
         {% endblock %}
 
         {% block sonata_page_asset_footer %}
-            {% block page_asset_footer %} {# Deprecated block #}
-                {% if page is defined %}
-                    {% if page.javascript is not empty %}
-                        <script>
-                            {{ page.javascript|raw }}
-                        </script>
-                    {% endif %}
-                    {% if page.stylesheet is not empty %}
-                        <style>
-                            {{ page.stylesheet|raw }}
-                        </style>
-                    {% endif %}
+            {% if page is defined %}
+                {% if page.javascript is not empty %}
+                    <script>
+                        {{ page.javascript|raw }}
+                    </script>
                 {% endif %}
-                {#
-                    These includes can be done only at this point as all blocks are loaded,
-                    Limition : this does not work if a global page is loaded from an ESI tag inside a container block
-                #}
-                {{ sonata_block_include_stylesheets('screen', app.request.basePath) }}
-                {{ sonata_block_include_javascripts('screen', app.request.basePath) }}
-            {% endblock %}
+                {% if page.stylesheet is not empty %}
+                    <style>
+                        {{ page.stylesheet|raw }}
+                    </style>
+                {% endif %}
+            {% endif %}
+            {#
+                These includes can be done only at this point as all blocks are loaded,
+                Limitation : this does not work if a global page is loaded from an ESI tag inside a container block
+            #}
+            {{ sonata_block_include_stylesheets('screen', app.request.basePath) }}
+            {{ sonata_block_include_javascripts('screen', app.request.basePath) }}
         {% endblock %}
-
-        <!-- monitoring:3e9fda56df2cdd3b039f189693ab7844fbb2d4f6 -->
     </body>
 </html>

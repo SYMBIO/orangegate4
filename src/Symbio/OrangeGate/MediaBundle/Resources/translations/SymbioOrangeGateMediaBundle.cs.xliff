@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="cs" datatype="plaintext"  original="file.ext">
+        <body>
+            <trans-unit id="link_media">
+                <source>link_media</source>
+                <target>Přiložit soubor</target>
+            </trans-unit>
+            <trans-unit id="no_linked_media">
+                <source>no_linked_media</source>
+                <target>Není přiřazený soubor</target>
+            </trans-unit>
+            <trans-unit id="Binary Content">
+                <source>Binary Content</source>
+                <target>Soubor</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_context_promo">
+                <source>sidemenu.link_context_promo</source>
+                <target>Proma</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_context_news">
+                <source>sidemenu.link_context_news</source>
+                <target>Novinky</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_context_properties">
+                <source>sidemenu.link_context_properties</source>
+                <target>Properties</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_context_user">
+                <source>sidemenu.link_context_user</source>
+                <target>Uživatelé</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_context_sonata_collection">
+                <source>sidemenu.link_context_sonata_collection</source>
+                <target>Kolekce</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_context_sonata_category">
+                <source>sidemenu.link_context_sonata_category</source>
+                <target>Kategorie</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

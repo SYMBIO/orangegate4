@@ -1,0 +1,6 @@
+services:
+    orangegate.news.block.recent_posts:
+        class: Symbio\OrangeGate\NewsBundle\Block\RecentPostsBlockService
+        tags:
+            - { name: sonata.block }
+        arguments: [orangegate.news.block.recent_posts, @templating, @orangegate.news.manager.post]

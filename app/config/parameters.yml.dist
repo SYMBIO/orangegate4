@@ -24,5 +24,3 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
-
-    sonata.page.admin.page.class: Symbio\OrangeGate\PageBundle\Admin\PageAdmin

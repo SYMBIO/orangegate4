@@ -20,6 +20,10 @@ sonata_page:
     ignore_route_patterns:
         - (.*)admin(.*)     # ignore admin route, ie route containing 'admin'
         - ^_(.*)            # ignore symfony routes
+        - ^sonata_user_(.*)
+        - ^fos_user_(.*)
+        - ^sonata_media_(.*)
+        - ^sonata_page_(.*)
 
     ignore_routes:
         - sonata_page_cache_esi
@@ -31,6 +35,14 @@ sonata_page:
         - sonata_cache_js_async
         - sonata_cache_js_sync
         - sonata_cache_apc
+        - sonata_cache_symfony
+        - sonata_news_add_comment
+        - sonata_news_archive_monthly
+        - sonata_news_tag
+        - sonata_news_collection
+        - sonata_news_archive_yearly
+        - sonata_news_archive
+        - sonata_news_comment_moderation
 
     cache_invalidation:
         service:  sonata.page.cache.invalidation.simple
@@ -44,47 +56,22 @@ sonata_page:
         block: Symbio\OrangeGate\PageBundle\Entity\Block
         site: Symbio\OrangeGate\PageBundle\Entity\Site
 
-    default_template: default
+    default_template: #insert the concrete one from templates
+
+    assets:
+        stylesheets:
+            - bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css
+            - bundles/sonatapage/default.css
+        javascripts:
+            - bundles/sonatacore/vendor/jquery/dist/jquery.min.js
+            - bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.min.js
+            - bundles/sonatapage/page.js
 
     templates:
-        default:
-            path: 'SymbioOrangeGatePageBundle::layout.html.twig'
-            name: 'default'
-            containers:
-                header:
-                    name: Header
-                content_top:
-                    name: Top content
-                content:
-                    name: Main content
-                content_bottom:
-                    name: Bottom content
-                footer:
-                    name: Footer
-            matrix:
-                layout: |
-                    HHHHHHHH
-                    HHHHHHHH
-                    TTTTBBBB
-                    TTTTBBBB
-                    TTTTBBBB
-                    TTTTBBBB
-                    CCCCCCCC
-                    CCCCCCCC
-                    FFFFFFFF
-                    FFFFFFFF
-
-                mapping:
-                    H: header
-                    T: content_top
-                    C: content
-                    B: content_bottom
-                    F: footer
-
-        2columns: { path: 'SymbioOrangeGatePageBundle::demo_2columns_layout.html.twig', name: '2 columns layout' }
+    #here you can insert some templates like 1 column, 3 columns etc.
 
     page_defaults:
-        homepage: { decorate: false, enabled: true }
+        homepage: { decorate: true, enabled: true }
 
     #caches:
     #    esi:

@@ -17,7 +17,6 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.5",
-        "jackalope/jackalope-doctrine-dbal": "~1.1",
         "doctrine/orm": "~2.4",
         "doctrine/doctrine-bundle": "~1.2",
         "doctrine/doctrine-migrations-bundle": "~2.0dev",
@@ -46,6 +45,7 @@
         "sonata-project/seo-bundle": "~1",
         "sonata-project/doctrine-extensions": "~1",
         "sonata-project/intl-bundle": "~2.1@dev",
+        "sonata-project/core-bundle": "~2.3@dev",
         "sonata-project/admin-bundle": "~2.3@dev",
         "sonata-project/doctrine-orm-admin-bundle": "~2.2@dev",
         "sonata-project/notification-bundle": "~2.2@dev",
@@ -70,12 +70,17 @@
         "willdurand/faker-bundle": "~1.0",
         "mopa/bootstrap-bundle": "v3.0.0-beta3",
         "twbs/bootstrap": "v3.0.0",
-        "stof/doctrine-extensions-bundle": "~1.1",
         "stephpy/TimelineBundle": "~2.0",
         "stephpy/timeline": "~1.0",
         "nelmio/alice": "1.*",
         "twbs/bootstrap": "3.0.*",
-        "braincrafted/bootstrap-bundle": "~2.1"
+        "braincrafted/bootstrap-bundle": "~2.1",
+        "lunetics/locale-bundle": "~2.3",
+        "hearsay/require-js-bundle": "~2.0@dev",
+        "tilleuls/ckeditor-sonata-media-bundle": "~2.0@dev",
+        "a2lix/translation-form-bundle": "~2.0",
+        "gedmo/doctrine-extensions": "dev-wip-v2.4.0",
+        "pixassociates/sortable-behavior-bundle": "~0.1@dev"
     },
     "require-dev": {
         "liip/functional-test-bundle": "~1.0"
@@ -102,6 +107,7 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
+        "symfony-assets-install": "symlink",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         },
