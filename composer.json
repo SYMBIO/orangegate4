@@ -80,7 +80,8 @@
         "tilleuls/ckeditor-sonata-media-bundle": "~2.0@dev",
         "a2lix/translation-form-bundle": "~2.0",
         "gedmo/doctrine-extensions": "dev-wip-v2.4.0",
-        "pixassociates/sortable-behavior-bundle": "~0.1@dev"
+        "pixassociates/sortable-behavior-bundle": "~0.1@dev",
+        "oneup/uploader-bundle": "~1.3"
     },
     "require-dev": {
         "liip/functional-test-bundle": "~1.0"
