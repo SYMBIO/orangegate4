@@ -1,0 +1,63 @@
+parameters:
+    orangegate_translation.default.service.translation.class: Symbio\OrangeGate\TranslationBundle\TranslationForm\TranslationForm
+    orangegate_translation.default.listener.translations.class: Symbio\OrangeGate\TranslationBundle\Form\EventListener\TranslationsListener
+    orangegate_translation.default.listener.translationsForms.class: Symbio\OrangeGate\TranslationBundle\Form\EventListener\TranslationsFormsListener
+    orangegate_translation.default.type.translations.class: Symbio\OrangeGate\TranslationBundle\Form\Type\TranslationsType
+    orangegate_translation.default.type.translationsFields.class: Symbio\OrangeGate\TranslationBundle\Form\Type\TranslationsFieldsType
+    orangegate_translation.default.type.translationsForms.class: Symbio\OrangeGate\TranslationBundle\Form\Type\TranslationsFormsType
+    orangegate_translation.default.type.translationsLocalesSelector.class: Symbio\OrangeGate\TranslationBundle\Form\Type\TranslationsLocalesSelectorType
+    orangegate_translation.default.type.translatedEntity.class: Symbio\OrangeGate\TranslationBundle\Form\Type\TranslatedEntityType
+
+services:
+    translation.loader.db:
+        class: Symbio\OrangeGate\TranslationBundle\Services\DBLoader
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: translation.loader, alias: db }
+
+    kernel.listener.resource_listener:
+        class: Symbio\OrangeGate\TranslationBundle\EventListener\ResourceListener
+        arguments: [@service_container]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    orangegate_translation.default.service.translation:
+        class: %orangegate_translation.default.service.translation.class%
+        arguments: [@form.registry, @orangegate_translation.manager_registry]
+
+    orangegate_translation.default.listener.translations:
+        class: %orangegate_translation.default.listener.translations.class%
+        arguments: [@orangegate_translation.default.service.translation]
+
+    orangegate_translation.default.listener.translationsForms:
+        class: %orangegate_translation.default.listener.translationsForms.class%
+
+    orangegate_translation.default.type.translations:
+        class: %orangegate_translation.default.type.translations.class%
+        arguments: [@orangegate_translation.default.listener.translations, %orangegate_translation.locales%, %orangegate_translation.default_locale%, %orangegate_translation.required_locales%]
+        tags:
+            - { name: form.type, alias: orangegate_translations }
+
+    orangegate_translation.default.type.translationsFields:
+        class: %orangegate_translation.default.type.translationsFields.class%
+        tags:
+            - { name: form.type, alias: orangegate_translationsFields }
+
+    orangegate_translation.default.type.translationsForms:
+        class: %orangegate_translation.default.type.translationsForms.class%
+        arguments: [@orangegate_translation.default.service.translation, @orangegate_translation.default.listener.translationsForms, %orangegate_translation.locales%, %orangegate_translation.default_locale%, %orangegate_translation.required_locales%]
+        tags:
+            - { name: form.type, alias: orangegate_translationsForms }
+
+    orangegate_translation.default.type.translationsLocalesSelector:
+        class: %orangegate_translation.default.type.translationsLocalesSelector.class%
+        arguments: [%orangegate_translation.locales%, %orangegate_translation.default_locale%]
+        tags:
+            - { name: form.type, alias: orangegate_translationsLocalesSelector }
+
+    orangegate_translation.default.type.translatedEntity:
+        class: %orangegate_translation.default.type.translatedEntity.class%
+        calls:
+            - [ setRequest, [@request_stack] ]
+        tags:
+            - { name: form.type, alias: orangegate_translatedEntity }

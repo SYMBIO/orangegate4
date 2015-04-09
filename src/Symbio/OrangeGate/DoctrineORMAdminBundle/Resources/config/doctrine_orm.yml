@@ -1,0 +1,4 @@
+services:
+    sonata.admin.builder.orm_form:
+        class: Symbio\OrangeGate\DoctrineORMAdminBundle\Builder\FormContractor
+        arguments: [ @form.factory ]

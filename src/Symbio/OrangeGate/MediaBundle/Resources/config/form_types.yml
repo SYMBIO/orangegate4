@@ -1,0 +1,11 @@
+services:
+    sonata.core.form.type.image_collection:
+        class: Symbio\OrangeGate\MediaBundle\Form\Type\ImageCollectionType
+        tags:
+            - { name: form.type, alias: orangegate_type_image_collection }
+        arguments: [@service_container]
+
+    sonata.core.form.type.image:
+        class: Symbio\OrangeGate\MediaBundle\Form\Type\ImageType
+        tags:
+            - { name: form.type, alias: orangegate_type_image }

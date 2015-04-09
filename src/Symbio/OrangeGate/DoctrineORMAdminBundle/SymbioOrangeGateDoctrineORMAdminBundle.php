@@ -3,6 +3,8 @@
 namespace Symbio\OrangeGate\DoctrineORMAdminBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symbio\OrangeGate\DoctrineORMAdminBundle\DependencyInjection\Compiler\AddAuditEntityCompilerPass;
 
 class SymbioOrangeGateDoctrineORMAdminBundle extends Bundle
 {
@@ -13,4 +15,11 @@ class SymbioOrangeGateDoctrineORMAdminBundle extends Bundle
     {
         return 'SonataDoctrineORMAdminBundle';
     }
-}
+
+    /**
+     * {@inheritdoc}
+     */
+    public function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new AddAuditEntityCompilerPass());
+    }}

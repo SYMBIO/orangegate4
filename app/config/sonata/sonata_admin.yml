@@ -57,6 +57,8 @@ sonata_admin:
             - 'bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js'
             - 'bundles/sonataadmin/jquery/jquery.form.js'
             - 'bundles/sonataadmin/jquery/jquery.confirmExit.js'
+            - 'bundles/symbioorangegatemedia/js/jquery-file-upload/jquery.iframe-transport.js'
+            - 'bundles/symbioorangegatemedia/js/jquery-file-upload/jquery.fileupload.js'
             - 'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js'
             - 'bundles/sonatacore/vendor/select2/select2.min.js'
             - 'bundles/ivoryckeditor/ckeditor.js'
@@ -73,24 +75,13 @@ sonata_admin:
             - { position: left, type: sonata.admin.block.admin_list }
 #            - { position: right, type: sonata.admin_doctrine_orm.block.audit}
 #            - { position: top, type: sonata.block.service.text, settings: { content: '<h2>Welcome to the OrangeGate4 CMS!</h2>'} }
-            - { position: right, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 15 }}
+            - { position: right, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, title: Poslední změny, max_per_page: 15 }}
 #            - { position: right, type: orangegate.news.block.recent_posts, settings: { title: Recent Posts, number: 3, mode: admin }}
 #            - { position: right, type: orangegate.news.block.recent_comments, settings: { title: Recent Comments, number: 5, mode: admin, template: SymbioOrangeGateNewsBundle:Block: }}
 #            - { position: right, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 5, mode: admin }}
 #            - { position: right, type: sonata.customer.block.recent_customers, settings: { title: Recent Customers, number: 5, mode: admin }}
 
         groups:
-            sonata.admin.group.content:
-                label:           sonata_content
-                label_catalogue: SymbioOrangeGateAdminBundle
-                icon: '<i class="fa fa-th"></i>'
-                items:
-                    - orangegate.news.admin.post
-                    #- orangegate.news.admin.comment
-                    - orangegate.media.admin.media
-                    #- orangegate.media.admin.gallery
-                    #- sonata.comment.admin.thread
-
             sonata.admin.group.site:
                 label:           sonata_site
                 label_catalogue: SymbioOrangeGateAdminBundle
@@ -98,6 +89,18 @@ sonata_admin:
                 items:
                     - sonata.page.admin.page
                     - sonata.page.admin.site
+
+            sonata.admin.group.content:
+                label:           sonata_content
+                label_catalogue: SymbioOrangeGateAdminBundle
+                icon: '<i class="fa fa-th"></i>'
+                items:
+                    - orangegate.news.admin.post
+                    #- orangegate.news.admin.comment
+                    - orangegate.admin.token
+                    - orangegate.media.admin.media
+                    #- orangegate.media.admin.gallery
+                    #- sonata.comment.admin.thread
 
             #sonata.admin.group.ecommerce:
             #    label:           sonata_ecommerce
@@ -119,9 +122,13 @@ sonata_admin:
 
             sonata.admin.group.administration:
                 label:           sonata_administration
-                label_catalogue: SonataAdminBundle
+                label_catalogue: SymbioOrangeGateAdminBundle
                 icon: '<i class="fa fa-gears"></i>'
                 items:
                     - orangegate.user.admin.user
                     - orangegate.user.admin.group
                     #- sonata.notification.admin.message
+
+sonata_doctrine_orm_admin:
+    templates:
+        form: [ SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig, SymbioOrangeGateMediaBundle:Form:form_admin_fields.html.twig ]

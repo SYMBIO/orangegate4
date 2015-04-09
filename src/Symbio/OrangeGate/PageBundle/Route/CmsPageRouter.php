@@ -38,7 +38,18 @@ class CmsPageRouter extends BaseCmsPageRouter
             unset($parameters['path']);
         }
 
-        $url = parent::generateFromPage($page, $parameters, $referenceType);
+        // hybrid pages use, by definition, the default routing mechanism
+        if ($page->isHybrid()) {
+            //return $this->router->generate($page->getRouteName(), $parameters, $referenceType);
+        }
+
+        $url = $this->getUrlFromPage($page);
+
+        if ($url === false) {
+            throw new \RuntimeException(sprintf('Page "%d" has no url or customUrl.', $page->getId()));
+        }
+
+        $url = $this->decorateUrl($url, $parameters, $referenceType);
 
         if ($page->getSite() !== $this->siteSelector->retrieve()) {
             $url = str_replace($this->siteSelector->retrieve()->getRelativePath(), $page->getSite()->getRelativePath(), $url);

@@ -16,6 +16,7 @@
     <head>
         {% block meta_tags %}
             <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         {% endblock %}
 
@@ -125,7 +126,7 @@
                                             </a>
                                             {% include admin_pool.getTemplate('add_block') %}
                                         </li>
-                                        {{ locale_switcher() }}
+                                        {#{ locale_switcher() }#}
                                         <li class="dropdown user user-menu">
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                                 <i class="glyphicon glyphicon-user"></i>
@@ -291,15 +292,17 @@
                                             {% endif %}
                                         </div>
                                     {% endif %}
-{#
+
                                     {% if admin is defined and action is defined and action == 'list' and admin.listModes|length > 1 %}
+                                        </br>
+                                        </br>
                                         <div class="nav navbar-right btn-group">
                                             {% for mode, settings in admin.listModes %}
                                                 <a href="{{ admin.generateUrl('list', app.request.query.all|merge({_list_mode: mode})) }}" class="btn btn-default navbar-btn btn-sm{% if admin.getListMode() == mode %} active{% endif %}"><i class="{{ settings.class }}"></i></a>
                                             {% endfor %}
                                         </div>
                                     {% endif %}
-#}
+
                                     {% if _list_filters_actions is not empty %}
                                         {{ _list_filters_actions|raw }}
                                     {% endif %}
@@ -315,7 +318,7 @@
                             {% block sonata_admin_content %}
 
                                 {% block notice %}
-                                    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+                                    {% include 'SymbioOrangeGateAdminBundle:FlashMessage:render.html.twig' %}
                                 {% endblock notice %}
 
                                 {% if _preview is not empty %}

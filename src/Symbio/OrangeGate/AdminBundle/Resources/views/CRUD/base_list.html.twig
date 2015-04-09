@@ -61,11 +61,7 @@
 
                         {% block table_body %}
                             <tbody>
-                                {% for object in admin.datagrid.results %}
-                                    <tr>
-                                        {% include admin.getTemplate('inner_list_row') %}
-                                    </tr>
-                                {% endfor %}
+                                {% include admin.getTemplate('outer_list_rows_' ~ admin.getListMode()) %}
                             </tbody>
                         {% endblock %}
 
@@ -73,7 +69,7 @@
                             <tr>
                                 <th colspan="{{ admin.list.elements|length - (app.request.isXmlHttpRequest ? (admin.list.has('_action') + admin.list.has('batch')) : 0) }}">
                                     <div class="form-inline">
-                                        {% if not app.request.isXmlHttpRequest %}
+                                        {% if not app.request.isXmlHttpRequest or (app.request.isXmlHttpRequest and admin.code == 'orangegate.media.admin.media') %}
                                             {% if admin.hasRoute('batch') and batchactions|length > 0  %}
                                                 {% block batch %}
                                                     <script>
@@ -106,8 +102,8 @@
                                                             {{ 'all_elements'|trans({}, 'SonataAdminBundle') }}
                                                              ({{ admin.datagrid.pager.nbresults }})
                                                         </label>
-
                                                         <select name="action" style="width: auto; height: auto" class="form-control">
+
                                                             {% for action, options in batchactions %}
                                                                 <option value="{{ action }}">{{ options.label }}</option>
                                                             {% endfor %}
@@ -118,33 +114,35 @@
                                                 {% endblock %}
                                             {% endif %}
 
-                                            <div class="pull-right">
-                                                {% if admin.hasRoute('export') and admin.isGranted("EXPORT") and admin.getExportFormats()|length %}
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                            <i class="glyphicon glyphicon-export"></i>
-                                                            {{ "label_export_download"|trans({}, "SonataAdminBundle") }}
-                                                            <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            {% for format in admin.getExportFormats() %}
-                                                                <li>
-                                                                    <a href="{{ admin.generateUrl('export', admin.modelmanager.paginationparameters(admin.datagrid, 0) + {'format' : format}) }}">
-                                                                        <i class="glyphicon glyphicon-download"></i>
-                                                                        {{ format|upper }}
-                                                                    </a>
-                                                                <li>
-                                                            {% endfor %}
-                                                        </ul>
-                                                    </div>
+                                            {% if not app.request.isXmlHttpRequest %}
+                                                <div class="pull-right">
+                                                    {% if admin.hasRoute('export') and admin.isGranted("EXPORT") and admin.getExportFormats()|length %}
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                                <i class="glyphicon glyphicon-export"></i>
+                                                                {{ "label_export_download"|trans({}, "SonataAdminBundle") }}
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                {% for format in admin.getExportFormats() %}
+                                                                    <li>
+                                                                        <a href="{{ admin.generateUrl('export', admin.modelmanager.paginationparameters(admin.datagrid, 0) + {'format' : format}) }}">
+                                                                            <i class="glyphicon glyphicon-download"></i>
+                                                                            {{ format|upper }}
+                                                                        </a>
+                                                                    <li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </div>
 
-                                                    &nbsp;-&nbsp;
-                                                {% endif %}
+                                                        &nbsp;-&nbsp;
+                                                    {% endif %}
 
-                                                {% block pager_results %}
-                                                    {% include admin.getTemplate('pager_results') %}
-                                                {% endblock %}
-                                            </div>
+                                                    {% block pager_results %}
+                                                        {% include admin.getTemplate('pager_results') %}
+                                                    {% endblock %}
+                                                </div>
+                                            {% endif %}
                                         {% endif %}
                                     </div>
                                 </th>

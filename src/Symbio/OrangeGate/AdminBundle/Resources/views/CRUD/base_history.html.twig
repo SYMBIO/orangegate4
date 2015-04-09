@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-
+    {% include 'SymbioOrangeGateAdminBundle:FlashMessage:render.html.twig' %}
     <div class="col-md-5">
         <table class="table" id="revisions">
             <thead>
@@ -19,7 +19,7 @@
                     <th>{{ "td_timestamp"|trans({}, 'SonataAdminBundle') }}</th>
                     <th>{{ "td_username"|trans({}, 'SonataAdminBundle') }}</th>
                     <th>{{ "td_action"|trans({}, 'SonataAdminBundle') }}</th>
-                    <th>{{ "td_compare"|trans({}, 'SonataAdminBundle') }}</th>
+                    <th>{{ "td_compare"|trans({}, 'SymbioOrangeGateAdminBundle') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,12 +28,19 @@
                         <td>{{ revision.rev}}</td>
                         <td>{% include admin.getTemplate('history_revision_timestamp') %}</td>
                         <td>{{ revision.username}}</td>
-                        <td><a href="{{ admin.generateObjectUrl('history_view_revision', object, {'revision': revision.rev }) }}" class="revision-link" rel="{{ revision.rev }}">{{ "label_view_revision"|trans({}, 'SonataAdminBundle') }}</a></td>
+                        <td><a href="{{ admin.generateObjectUrl('history_view_revision', object, {'revision': revision.rev }) }}" class="revision-link" rel="{{ revision.rev }}">{{ "label_view_revision"|trans({}, 'SonataAdminBundle') }}</a>
+                        </br>
+                        {% if (currentRevision == false or revision.rev == currentRevision.rev) %}
+                                /
+                        {% else %}
+                            <a href="{{ path('symbio_orangegate_admin_history_back_to_revision', { 'id': object.id, 'revision': revision.rev, 'adminCode': admin.code }) }}">{{ "label_back_revision"|trans({}, 'SymbioOrangeGateAdminBundle') }}</a>
+                        {% endif %}
+                        </td>
                         <td>
                             {% if (currentRevision == false or revision.rev == currentRevision.rev) %}
                                 /
                             {% else %}
-                                <a href="{{ admin.generateObjectUrl('history_compare_revisions', object, {'base_revision': currentRevision.rev, 'compare_revision': revision.rev }) }}" class="revision-compare-link" rel="{{ revision.rev }}">{{ "label_compare_revision"|trans({}, 'SonataAdminBundle') }}</a>
+                                <a href="{{ admin.generateObjectUrl('history_compare_revisions', object, {'base_revision': currentRevision.rev, 'compare_revision': revision.rev }) }}" class="revision-compare-link" rel="{{ revision.rev }}">{{ "label_compare_revision"|trans({}, 'SymbioOrangeGateAdminBundle') }}</a>
                             {% endif %}
                         </td>
                     </tr>

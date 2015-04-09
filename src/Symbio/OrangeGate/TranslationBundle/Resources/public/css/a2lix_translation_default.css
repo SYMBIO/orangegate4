@@ -1,0 +1,48 @@
+.orangegate_translations {
+    overflow: hidden;
+}
+
+ul.orangegate_translationsLocales {
+    padding: 0;
+}
+
+ul.orangegate_translationsLocales li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul.orangegate_translationsLocales li a {
+    background: #EFEFEF;
+    border: 1px solid #000;
+    font-size: 14px;
+    padding: 3px 10px;
+    text-decoration: none;
+}
+
+ul.orangegate_translationsLocales li.active a {
+    background: #fff;
+    border-bottom: 1px solid #fff;
+    color: #000;
+}
+
+ul.orangegate_translationsLocales li a:hover {
+    background-color: #F6F6F6;
+}
+
+div.orangegate_translationsFields {
+    position: relative;
+    top: -2px;
+}
+
+div.orangegate_translationsFields > div {
+    border: 1px solid #000;
+    display: none;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+div.orangegate_translationsFields > div.active {
+    display: block;
+}

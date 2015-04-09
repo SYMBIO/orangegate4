@@ -42,7 +42,7 @@ class OrangeGatePageService extends BasePageService
      */
     public function execute(PageInterface $page, Request $request, array $parameters = array(), Response $response = null)
     {
-        $this->updateSeoPage($page);
+        $this->updateSeoPage($page, $request->getLocale());
 
         $response = $this->templateManager->renderResponse($page->getTemplateCode(), $parameters, $response);
 
@@ -54,29 +54,36 @@ class OrangeGatePageService extends BasePageService
      *
      * @param PageInterface $page
      */
-    protected function updateSeoPage(PageInterface $page)
+    protected function updateSeoPage(PageInterface $page, $locale)
     {
         if (!$this->seoPage) {
             return;
         }
 
-        if ($page->getParent()) {
-            $this->seoPage->addTitle($page->getTitle() ?: $page->getName());
+        if (!$page->getParent()) {
+            $this->seoPage->setTitle($page->getSite()->getLanguageVersion($locale)->getTitle());
         } else {
             if ($page->getTitle()) {
                 $this->seoPage->setTitle($this->seoPage->getTitle().' - '.$page->getTitle());
+            } elseif ($page->getName()) {
+                $this->seoPage->setTitle($this->seoPage->getTitle().' - '.$page->getName());
             }
         }
 
         if ($page->getMetaDescription()) {
             $this->seoPage->addMeta('name', 'description', $page->getMetaDescription());
-        }
+            $this->seoPage->addMeta('property', 'og:description', $page->getMetaDescription());
+        } else {
+            $this->seoPage->addMeta('name', 'description', $page->getSite()->getLanguageVersion($locale)->getMetaDescription());
+            $this->seoPage->addMeta('property', 'og:description', $page->getSite()->getLanguageVersion($locale)->getMetaDescription());
+	}
 
         if ($page->getMetaKeyword()) {
             $this->seoPage->addMeta('name', 'keywords', $page->getMetaKeyword());
         }
 
-        $this->seoPage->addMeta('property', 'og:type', 'article');
+        $this->seoPage->addMeta('property', 'og:type', 'website');
+        $this->seoPage->addMeta('property', 'og:site_name', $page->getSite()->getLanguageVersion($locale)->getTitle());
         $this->seoPage->addHtmlAttributes('prefix', 'og: http://ogp.me/ns#');
     }
 }

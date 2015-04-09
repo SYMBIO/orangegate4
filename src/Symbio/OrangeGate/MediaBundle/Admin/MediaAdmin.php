@@ -23,4 +23,42 @@ class MediaAdmin extends \Sonata\MediaBundle\Admin\ORM\MediaAdmin
             );
         }
     }
+
+    public function getPersistentParameters()
+    {
+        $parameters = parent::getPersistentParameters();
+
+        if (!$this->hasRequest()) {
+            return $parameters;
+        }
+
+        if ($filter = $this->getRequest()->get('filter')) {
+            $context = $filter['context']['value'];
+        } else {
+            $context   = $this->getRequest()->get('context', $this->pool->getDefaultContext());
+        }
+
+        $providers = $this->pool->getProvidersByContext($context);
+        $provider  = $this->getRequest()->get('provider');
+
+        // if the context has only one provider, set it into the request
+        // so the intermediate provider selection is skipped
+        if (count($providers) == 1 && null === $provider) {
+            $provider = array_shift($providers)->getName();
+            $this->getRequest()->query->set('provider', $provider);
+        }
+
+        $categoryId = $this->getRequest()->get('category');
+
+        if (!$categoryId) {
+            $categoryId = $this->categoryManager->getRootCategory($context)->getId();
+        }
+
+        return array_merge($parameters,array(
+            'provider'     => $provider,
+            'context'      => $context,
+            'category'     => $categoryId,
+            'hide_context' => (bool)$this->getRequest()->get('hide_context')
+        ));
+    }
 }

@@ -12,10 +12,11 @@
 namespace Symbio\OrangeGate\PageBundle\Admin;
 
 use Doctrine\ORM\EntityRepository;
-use Symbio\OrangeGate\AdminBundle\Admin\Admin;
+use Symbio\OrangeGate\AdminBundle\Admin\Admin as BaseAdmin;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
 use Sonata\Cache\CacheManagerInterface;
@@ -30,7 +31,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class BlockAdmin extends Admin
+class BlockAdmin extends BaseAdmin
 {
     protected $parentAssociationMapping = 'page';
 
@@ -68,6 +69,18 @@ class BlockAdmin extends Admin
         $listMapper
             ->addIdentifier('type')
             ->add('name')
+            ->add('enabled')
+            ->add('updatedAt')
+            ->add('position')
+        ;
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('type')
+            ->add('name')
+            ->add('settings')
             ->add('enabled')
             ->add('updatedAt')
             ->add('position')
@@ -120,7 +133,7 @@ class BlockAdmin extends Admin
 
             $containerBlockTypes = $this->containerBlockTypes;
 
-            $formMapper->with($this->trans('form.field_group_options'));
+            //$formMapper->with($this->trans('form.field_group_options'));
 
             // need to investigate on this case where $page == null ... this should not be possible
             if ($isStandardBlock && $page && !empty($containerBlockTypes)) {
@@ -141,8 +154,7 @@ class BlockAdmin extends Admin
                 $formMapper->add('position', 'integer');
             }
 
-            $formMapper->add('name');
-            //$formMapper->add('enabled');
+            //$formMapper->add('name');
 
             if ($block->getId() > 0) {
                 $service->buildEditForm($formMapper, $block);
@@ -152,7 +164,7 @@ class BlockAdmin extends Admin
 
         } else {
 
-            $formMapper->with($this->trans('form.field_group_general'));
+            //$formMapper->with($this->trans('form.field_group_general'));
 
             // add name on all forms
             $formMapper->add('name');
@@ -171,7 +183,10 @@ class BlockAdmin extends Admin
      */
     public function getObject($id)
     {
-        $subject = parent::getObject($id);
+        $subject = $this->getModelManager()->find($this->getClass(), $id);
+        foreach ($this->getExtensions() as $extension) {
+            $extension->alterObject($this, $subject);
+        }
 
         if ($subject) {
             $service = $this->blockManager->get($subject);
@@ -180,7 +195,13 @@ class BlockAdmin extends Admin
             $service->setDefaultSettings($resolver);
 
             try {
-                $subject->setSettings($resolver->resolve($subject->getSettings()));
+                if ($subject->getTranslations() && $subject->getTranslations()->count() > 0) {
+                    foreach ($subject->getTranslations() as $t) {
+                        $t->setSettings($resolver->resolve($t->getSettings()));
+                    }
+                } else {
+                    $block->setSettings($resolver->resolve($block->getSettings()));
+                }
             } catch (InvalidOptionsException $e) {
                 // @TODO : add a logging error or a flash message
 
@@ -224,6 +245,10 @@ class BlockAdmin extends Admin
         $this->blockManager->get($object)->prePersist($object);
 
         $object->getPage()->setEdited(true);
+
+        foreach ($object->getTranslations() as $trans) {
+            $trans->setObject($object);
+        }
 
         // fix weird bug with setter object not being call
         $object->setChildren($object->getChildren());

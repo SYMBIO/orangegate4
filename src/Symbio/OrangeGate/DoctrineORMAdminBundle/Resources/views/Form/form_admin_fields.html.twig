@@ -17,16 +17,16 @@ file that was distributed with this source code.
     {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_one_to_one.html.twig' %}
 {% endblock %}
 
-{% block sonata_admin_orm_many_to_many_widget %}
-    {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_many.html.twig' %}
-{% endblock %}
-
 {% block sonata_admin_orm_many_to_one_widget %}
     {% include 'SonataDoctrineORMAdminBundle:CRUD:edit_orm_many_to_one.html.twig' %}
 {% endblock %}
 
 {% block sonata_admin_orm_one_to_many_widget %}
     {% include 'SymbioOrangeGateDoctrineORMAdminBundle:CRUD:edit_orm_one_to_many.html.twig' %}
+{% endblock %}
+
+{% block sonata_admin_orm_many_to_many_widget %}
+    {% include 'SymbioOrangeGateDoctrineORMAdminBundle:CRUD:edit_orm_many_to_many.html.twig' %}
 {% endblock %}
 
 {% block sonata_type_model_widget %}
@@ -107,7 +107,7 @@ file that was distributed with this source code.
         </span>
 
         <span style="display: none" >
-            {{ form_widget(form) }}
+              {{ form_widget(form) }}
         </span>
 
         <div class="modal fade" id="field_dialog_{{ id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

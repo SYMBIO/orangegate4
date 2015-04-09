@@ -5,6 +5,7 @@ namespace Symbio\OrangeGate\AdminBundle\Admin;
 use Sonata\AdminBundle\Admin\Admin as BaseAdmin;
 use Knp\Menu\ItemInterface as MenuItemInterface;
 use Doctrine\Common\Util\ClassUtils;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class Admin extends BaseAdmin
 {

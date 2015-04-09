@@ -45,4 +45,55 @@ class AdminObjectAclManipulator extends BaseAdminObjectAclManipulator
 
         return $form;
     }
+
+    /**
+     * Updates ACL
+     *
+     * @param \Sonata\AdminBundle\Util\AdminObjectAclData $data
+     */
+    public function updateAcl(AdminObjectAclData $data)
+    {
+        foreach ($data->getAclUsers() as $aclUser) {
+            $securityIdentity = UserSecurityIdentity::fromAccount($aclUser);
+
+            $maskBuilder = new $this->maskBuilderClass();
+            foreach ($data->getUserPermissions() as $permission) {
+                if ($data->getForm()->get($aclUser->getId() . $permission)->getData()) {
+                    $maskBuilder->add($permission);
+                }
+            }
+
+            $masks = $data->getMasks();
+            $acl = $data->getAcl();
+
+            // Restore OWNER and MASTER permissions
+            /*if (!$data->isOwner()) {
+                foreach ($data->getOwnerPermissions() as $permission) {
+                    if ($acl->isGranted(array($masks[$permission]), array($securityIdentity))) {
+                        $maskBuilder->add($permission);
+                    }
+                }
+            }*/
+
+            $mask = $maskBuilder->get();
+
+            $index = null;
+            $ace = null;
+            foreach ($acl->getObjectAces() as $currentIndex => $currentAce) {
+                if ($currentAce->getSecurityIdentity()->equals($securityIdentity)) {
+                    $index = $currentIndex;
+                    $ace = $currentAce;
+                    break;
+                }
+            }
+
+            if ($ace) {
+                $acl->updateObjectAce($index, $mask);
+            } else {
+                $acl->insertObjectAce($securityIdentity, $mask);
+            }
+        }
+
+        $data->getSecurityHandler()->updateAcl($acl);
+    }
 }

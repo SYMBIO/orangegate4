@@ -127,6 +127,11 @@ doctrine:
                 alias: Gedmo
                 prefix: Gedmo\Tree\Entity
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+            sortable:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Sortable\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Sortable/Entity"
         dql:
             numeric_functions:
                 sin: Symbio\OrangeGate\AdminBundle\DQL\Sin
@@ -136,6 +141,10 @@ doctrine:
                 radians: Symbio\OrangeGate\AdminBundle\DQL\Radians
                 power: Symbio\OrangeGate\AdminBundle\DQL\Power
                 pi: Symbio\OrangeGate\AdminBundle\DQL\Pi
+        filters:
+            softdeleteable:
+                class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                enabled: true
 
 # Menu Configuration
 knp_menu:
@@ -201,7 +210,12 @@ ivory_ck_editor:
                 provider: sonata.media.provider.image
                 context: news
 
-a2lix_translation_form:
+oneup_uploader:
+    mappings:
+        media:
+            frontend: blueimp
+
+symbio_orange_gate_translation:
     locales: %symbio.orangegate.locales%
     required_locales: []
     templating: "SymbioOrangeGateAdminBundle:Form:translations.html.twig"
@@ -211,14 +225,21 @@ parameters:
     sonata.page.admin.page.class: Symbio\OrangeGate\PageBundle\Admin\PageAdmin
     sonata.page.admin.block.class: Symbio\OrangeGate\PageBundle\Admin\BlockAdmin
     sonata.page.request_listener.class: Symbio\OrangeGate\PageBundle\Listener\RequestListener
+    sonata.page.manager.page.class: Symbio\OrangeGate\PageBundle\Entity\PageManager
+    sonata.page.manager.snapshot.class: Symbio\OrangeGate\PageBundle\Entity\SnapshotManager
     sonata.page.service.default.class: Symbio\OrangeGate\PageBundle\Page\OrangeGatePageService
     sonata.page.cms_manager.page.class: Symbio\OrangeGate\PageBundle\CmsManager\CmsPageManager
     sonata.page.cms_manager.snapshot.class: Symbio\OrangeGate\PageBundle\CmsManager\CmsSnapshotManager
     sonata.page.router.class: Symbio\OrangeGate\PageBundle\Route\CmsPageRouter
+    sonata.page.transformer.class: Symbio\OrangeGate\PageBundle\Entity\Transformer
+    sonata.page.admin.site.class: Symbio\OrangeGate\PageBundle\Admin\SiteAdmin
+    sonata.page.site.selector.host_with_path.class: Symbio\OrangeGate\PageBundle\Site\HostPathSiteSelector
+    sonata.page.block_interactor.class: Symbio\OrangeGate\PageBundle\Entity\BlockInteractor
     sonata.classification.admin.collection.class: Symbio\OrangeGate\ClassificationBundle\Admin\CollectionAdmin
     sonata.user.admin.user.entity: Symbio\OrangeGate\UserBundle\Entity\User
     sonata.user.admin.group.entity: Symbio\OrangeGate\UserBundle\Entity\Group
     sonata.admin.object.manipulator.acl.admin.class: Symbio\OrangeGate\AdminBundle\Util\AdminObjectAclManipulator
     sonata.news.admin.post.entity: Symbio\OrangeGate\NewsBundle\Entity\Post
     sonata.news.admin.comment.entity: Symbio\OrangeGate\NewsBundle\Entity\Comment
+    sonata.media.admin.media.class: Symbio\OrangeGate\MediaBundle\Admin\MediaAdmin
     sonata.media.resizer.simple.class: Symbio\OrangeGate\MediaBundle\Resizer\OrangeGateResizer

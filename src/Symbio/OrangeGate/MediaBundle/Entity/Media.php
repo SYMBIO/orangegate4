@@ -21,6 +21,11 @@ class Media extends BaseMedia
     protected $id;
 
     /**
+     * @ORM\Column(name="lang", type="string", length=20, nullable=true)
+     */
+    protected $lang;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     protected $galleryHasMedias;
@@ -83,4 +88,28 @@ class Media extends BaseMedia
     {
         return $this->galleryHasMedias;
     }
+
+    /**
+     * Set lang
+     *
+     * @param string $lang
+     * @return Media
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
+
+        return $this;
+    }
+
+    /**
+     * Get lang
+     *
+     * @return string
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
 }

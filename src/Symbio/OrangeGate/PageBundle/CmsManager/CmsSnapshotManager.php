@@ -41,7 +41,7 @@ class CmsSnapshotManager extends BaseCmsPageManager
     /**
      * {@inheritdoc}
      */
-    public function getPage(SiteInterface $site, $page)
+    public function getPage(SiteInterface $site = null, $page)
     {
         if (is_string($page) && substr($page, 0, 1) == '/') {
             $page = $this->getPageByUrl($site, $page);
@@ -108,14 +108,26 @@ class CmsSnapshotManager extends BaseCmsPageManager
             $id = null;
         }
 
+        if ($site) {
+            $site_id = $site->getId();
+            $locale = $site->getLocale();
+        } else {
+            $site_id = null;
+            $locale = null;
+        }
+
         if (null === $id || !$site || ($site && !isset($this->pages[$site->getId()][$id]))) {
-            $parameters = array($fieldName => $value);
+            if ($fieldName === 'url') {
+                $snapshot = $this->snapshotManager->findOneByUrl($site, $value);
+            } else {
+                $parameters = array($fieldName => $value);
 
-            if ($site) {
-                $parameters['site'] = $site->getId();
+                if ($site) {
+                    $parameters['site'] = $site->getId();
+                }
+
+                $snapshot = $this->snapshotManager->findEnableSnapshot($parameters);
             }
-
-            $snapshot = $this->snapshotManager->findEnableSnapshot($parameters);
 
             if (!$snapshot) {
                 throw new PageNotFoundException();

@@ -7,7 +7,7 @@ services:
       calls:
         - [ setModelManager, [@sonata.media.admin.media.manager] ]
         - [ setTranslationDomain, [%sonata.media.admin.media.translation_domain%] ]
-        - [ setTemplates, [{inner_list_row: SonataMediaBundle:MediaAdmin:inner_row_media.html.twig, base_list_field: SonataAdminBundle:CRUD:base_list_flat_field.html.twig, list: SonataMediaBundle:MediaAdmin:list.html.twig, edit: SonataMediaBundle:MediaAdmin:edit.html.twig}] ]
+        - [ setTemplates, [{inner_list_row: SonataMediaBundle:MediaAdmin:inner_row_media.html.twig, base_list_field: SonataAdminBundle:CRUD:base_list_flat_field.html.twig, list: SonataMediaBundle:MediaAdmin:list.html.twig, edit: SonataMediaBundle:MediaAdmin:edit.html.twig, ,outer_list_rows_mosaic: SymbioOrangeGateMediaBundle:MediaAdmin:list_outer_rows_mosaic.html.twig, delete: SymbioOrangeGateMediaBundle:MediaAdmin:delete.html.twig}] ]
 
     orangegate.media.admin.gallery:
       class: Symbio\OrangeGate\MediaBundle\Admin\GalleryAdmin
@@ -17,3 +17,9 @@ services:
       calls:
         - [ setTranslationDomain, [%sonata.media.admin.media.translation_domain%] ]
         - [ setTemplates, [{list: SonataMediaBundle:GalleryAdmin:list.html.twig}] ]
+
+    orangegate.admin.upload_listener:
+        class: Symbio\OrangeGate\MediaBundle\Listener\UploadListener
+        tags:
+            - { name: kernel.event_listener, event: oneup_uploader.post_persist, method: onUpload }
+        arguments: [ @sonata.media.manager.media, @sonata.media.pool, @sonata.classification.manager.category ]

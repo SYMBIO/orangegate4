@@ -37,8 +37,6 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
 
-            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
-
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
@@ -118,7 +116,9 @@ class AppKernel extends Kernel
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
 
-            //new Hearsay\RequireJSBundle\HearsayRequireJSBundle(),
+            new Symbio\OrangeGate\TranslationBundle\SymbioOrangeGateTranslationBundle(),
+
+            new Oneup\UploaderBundle\OneupUploaderBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

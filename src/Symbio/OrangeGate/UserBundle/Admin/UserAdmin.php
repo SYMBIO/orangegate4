@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class UserAdmin extends BaseUserAdmin
 {
+
     /**
      * {@inheritdoc}
      */

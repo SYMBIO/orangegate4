@@ -9,7 +9,7 @@ file that was distributed with this source code.
 
 #}
 
-{% extends "SonataUserBundle::layout.html.twig" %}
+{% extends "SymbioOrangeGateAdminBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
     <div class="row">
@@ -65,7 +65,7 @@ file that was distributed with this source code.
 
                             <div class="form-group control-group">
                                 <div class="controls col-sm-offset-4 col-sm-8">
-                                    <a href="{{ path('fos_user_resetting_request') }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
+                                    <a href="{{ path('sonata_user_resetting_request') }}">aaa{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
                                 </div>
                             </div>
 

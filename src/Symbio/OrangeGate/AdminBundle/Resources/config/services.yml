@@ -28,3 +28,9 @@ services:
         class: Twig_Extensions_Extension_Text
         tags:
             - { name: twig.extension }
+
+    orangegate.admin.block.formatter:
+        class: Symbio\OrangeGate\AdminBundle\Block\FormatterBlockService
+        tags:
+            - { name: sonata.block }
+        arguments: [ sonata.block.empty, @templating ]

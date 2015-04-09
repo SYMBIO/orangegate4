@@ -16,6 +16,8 @@
               {% if not admin_pool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
               >
 
+            {{ form_errors(form) }}
+
             {% block sonata_pre_fieldsets %}
                 <div class="row">
             {% endblock %}

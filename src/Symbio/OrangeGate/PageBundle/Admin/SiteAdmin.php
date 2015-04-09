@@ -11,7 +11,7 @@
 
 namespace Symbio\OrangeGate\PageBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Symbio\OrangeGate\AdminBundle\Admin\Admin as BaseAdmin;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -25,7 +25,7 @@ use Sonata\PageBundle\Route\RoutePageGenerator;
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class SiteAdmin extends Admin
+class SiteAdmin extends BaseAdmin
 {
     /**
      * @var RoutePageGenerator
@@ -54,13 +54,7 @@ class SiteAdmin extends Admin
     {
         $showMapper
             ->add('name')
-            ->add('isDefault')
             ->add('enabled')
-            ->add('host')
-            ->add('locale')
-            ->add('relativePath')
-            ->add('enabledFrom')
-            ->add('enabledTo')
             ->add('title')
             ->add('metaDescription')
             ->add('metaKeywords')
@@ -74,13 +68,7 @@ class SiteAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('isDefault')
             ->add('enabled', null, array('editable' => true))
-            ->add('host')
-            ->add('relativePath')
-            ->add('locale')
-            ->add('enabledFrom')
-            ->add('enabledTo')
             ->add('create_snapshots', 'string', array('template' => 'SonataPageBundle:SiteAdmin:list_create_snapshots.html.twig'))
         ;
     }
@@ -102,21 +90,18 @@ class SiteAdmin extends Admin
     {
         $formMapper
             ->with($this->trans('form_site.label_general'))
-                ->add('name')
-                ->add('isDefault', null, array('required' => false))
                 ->add('enabled', null, array('required' => false))
-                ->add('host')
-                ->add('locale', 'locale', array(
-                    'required' => false
-                ))
-                ->add('relativePath', null, array('required' => false))
-                ->add('enabledFrom', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
-                ->add('enabledTo', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
+                ->add('name')
             ->end()
-            ->with($this->trans('form_site.label_seo'))
-                ->add('title', null, array('required' => false))
-                ->add('metaDescription', 'textarea', array('required' => false))
-                ->add('metaKeywords', 'textarea', array('required' => false))
+            ->with($this->trans('form_site.label_languages'))
+                ->add('languageVersions', 'sonata_type_collection', array(
+                        'type_options' => array('delete' => true),
+                        'label' => ' ',
+                        'required' => false,
+                    ), array(
+                        'edit' => 'inline',
+                        'inline' => 'blocks',
+                    ))
             ->end()
         ;
     }
@@ -135,5 +120,19 @@ class SiteAdmin extends Admin
     public function postPersist($object)
     {
         $this->routePageGenerator->update($object);
+    }
+
+    public function prePersist($object)
+    {
+        foreach ($object->getLanguageVersions() as $lv) {
+            $lv->setSite($object);
+        }
+    }
+
+    public function preUpdate($object)
+    {
+        foreach ($object->getLanguageVersions() as $lv) {
+            $lv->setSite($object);
+        }
     }
 }

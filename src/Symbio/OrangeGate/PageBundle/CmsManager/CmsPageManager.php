@@ -39,7 +39,7 @@ class CmsPageManager extends BaseCmsPageManager
     /**
      * {@inheritdoc}
      */
-    public function getPage(SiteInterface $site, $page)
+    public function getPage(SiteInterface $site = null, $page)
     {
         if (is_string($page) && substr($page, 0, 1) == '/') {
             $page = $this->getPageByUrl($site, $page);
@@ -102,9 +102,9 @@ class CmsPageManager extends BaseCmsPageManager
 
         // first level blocks are containers
         if (!$container && $page->getBlocks()) {
+            $page->getBlocks()->first();
             foreach ($page->getBlocks() as $block) {
                 if ($block->getSetting('code') == $code) {
-
                     $container = $block;
                     break;
                 }
@@ -112,6 +112,7 @@ class CmsPageManager extends BaseCmsPageManager
         }
 
         if (!$container) {
+            $page->getBlocks()->first();
             $container = $this->blockInteractor->createNewContainer(array(
                 'enabled'  => true,
                 'page'     => $page,
@@ -139,22 +140,26 @@ class CmsPageManager extends BaseCmsPageManager
 
         if ($site) {
             $site_id = $site->getId();
+            $locale = $site->getLocale();
         } else {
             $site_id = null;
+            $locale = null;
         }
 
         if (null === $id || !isset($this->pages[$site_id][$id])) {
-//            $this->pages[$site_id][$id] = false;
+            if ($fieldName === 'url') {
+                $page = $this->pageManager->findOneByUrl($site, $value);
+            } else {
+                $parameters = array(
+                    $fieldName => $value,
+                );
 
-            $parameters = array(
-                $fieldName => $value,
-            );
+                if ($site) {
+                    $parameters['site'] = $site->getId();
+                }
 
-            if ($site) {
-                $parameters['site'] = $site->getId();
+                $page = $this->pageManager->findOneBy($parameters);
             }
-
-            $page = $this->pageManager->findOneBy($parameters);
 
             if (!$page) {
                 throw new PageNotFoundException(sprintf('Unable to find the page : %s = %s', $fieldName, $value));

@@ -16,14 +16,14 @@
             </trans-unit>
             <trans-unit id="title_user_authentication">
                 <source>title_user_authentication</source>
-                <target>Authentication</target>
+                <target>Přihlaste se</target>
             </trans-unit>
             <trans-unit id="sonata_user_submit">
                 <source>sonata_user_submit</source>
                 <target>Odeslat</target>
             </trans-unit>
-            <trans-unit id="breadcrumb.link_user_list">
-                <source>breadcrumb.link_user_list</source>
+            <trans-unit id="User List">
+                <source>User List</source>
                 <target>Uživatelé</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_user_create">
@@ -38,8 +38,8 @@
                 <source>breadcrumb.link_user_delete</source>
                 <target>Odstranit</target>
             </trans-unit>
-            <trans-unit id="breadcrumb.link_group_list">
-                <source>breadcrumb.link_group_list</source>
+            <trans-unit id="Group List">
+                <source>Group List</source>
                 <target>Skupiny</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_group_create">
@@ -74,32 +74,32 @@
                 <source>form.label_username</source>
                 <target>Uživatelské jméno</target>
             </trans-unit>
-            <trans-unit id="form.label_email">
-                <source>form.label_email</source>
+            <trans-unit id="Email">
+                <source>Email</source>
                 <target>E-Mailová adresa</target>
             </trans-unit>
-            <trans-unit id="form.label_plain_password">
-                <source>form.label_plain_password</source>
+            <trans-unit id="Plain Password">
+                <source>Plain Password</source>
                 <target>Heslo</target>
             </trans-unit>
             <trans-unit id="form.label_groups">
                 <source>form.label_groups</source>
                 <target>Skupiny</target>
             </trans-unit>
-            <trans-unit id="form.label_roles">
-                <source>form.label_roles</source>
+            <trans-unit id="Roles">
+                <source>Roles</source>
                 <target>Role</target>
             </trans-unit>
-            <trans-unit id="form.label_locked">
-                <source>form.label_locked</source>
+            <trans-unit id="Locked">
+                <source>Locked</source>
                 <target>Zámek</target>
             </trans-unit>
             <trans-unit id="form.label_expired">
                 <source>form.label_expired</source>
                 <target>Expirováno</target>
             </trans-unit>
-            <trans-unit id="form.label_enabled">
-                <source>form.label_enabled</source>
+            <trans-unit id="Enabled">
+                <source>Enabled</source>
                 <target>Povoleno</target>
             </trans-unit>
             <trans-unit id="form.label_credentials_expired">
@@ -110,8 +110,8 @@
                 <source>form.label_name</source>
                 <target>Jméno</target>
             </trans-unit>
-            <trans-unit id="filter.label_username">
-                <source>filter.label_username</source>
+            <trans-unit id="Username">
+                <source>Username</source>
                 <target>Uživ. jméno</target>
             </trans-unit>
             <trans-unit id="filter.label_name">
@@ -150,12 +150,12 @@
                 <source>list.label_enabled</source>
                 <target>Povoleno</target>
             </trans-unit>
-            <trans-unit id="list.label_created_at">
-                <source>list.label_created_at</source>
+            <trans-unit id="Created At">
+                <source>Created At</source>
                 <target>Vytvořeno</target>
             </trans-unit>
-            <trans-unit id="list.label_impersonating">
-                <source>list.label_impersonating</source>
+            <trans-unit id="Impersonating">
+                <source>Impersonating</source>
                 <target>Přepnout uživatele</target>
             </trans-unit>
             <trans-unit id="list.label_roles">
@@ -242,77 +242,113 @@
                 <source>show.label_email</source>
                 <target>E-mailová adresa</target>
             </trans-unit>
-            <trans-unit id="show.label_groups">
-                <source>show.label_groups</source>
+            <trans-unit id="Groups">
+                <source>Groups</source>
                 <target>Skupiny</target>
             </trans-unit>
-            <trans-unit id="show.label_date_of_birth">
-                <source>show.label_date_of_birth</source>
+            <trans-unit id="Date Of Birth">
+                <source>Date Of Birth</source>
                 <target>Datum narození</target>
             </trans-unit>
-            <trans-unit id="show.label_firstname">
-                <source>show.label_firstname</source>
+            <trans-unit id="Firstname">
+                <source>Firstname</source>
                 <target>Jméno</target>
             </trans-unit>
-            <trans-unit id="show.label_lastname">
-                <source>show.label_lastname</source>
+            <trans-unit id="Lastname">
+                <source>Lastname</source>
                 <target>Příjmení</target>
             </trans-unit>
-            <trans-unit id="show.label_website">
-                <source>show.label_website</source>
+            <trans-unit id="Website">
+                <source>Website</source>
                 <target>Webová stránka</target>
             </trans-unit>
-            <trans-unit id="show.label_biography">
-                <source>show.label_biography</source>
+            <trans-unit id="Biography">
+                <source>Biography</source>
                 <target>Životopis</target>
             </trans-unit>
-            <trans-unit id="show.label_gender">
-                <source>show.label_gender</source>
+            <trans-unit id="Gender">
+                <source>Gender</source>
                 <target>Pohlaví</target>
             </trans-unit>
-            <trans-unit id="show.label_locale">
-                <source>show.label_locale</source>
+            <trans-unit id="Locale">
+                <source>Locale</source>
                 <target>Jazyk</target>
             </trans-unit>
-            <trans-unit id="show.label_timezone">
-                <source>show.label_timezone</source>
+            <trans-unit id="Timezone">
+                <source>Timezone</source>
                 <target>Časové pásmo</target>
             </trans-unit>
-            <trans-unit id="show.label_phone">
-                <source>show.label_phone</source>
+            <trans-unit id="Phone">
+                <source>Phone</source>
                 <target>Telefon</target>
             </trans-unit>
-            <trans-unit id="show.label_facebook_uid">
-                <source>show.label_facebook_uid</source>
+            <trans-unit id="Facebook Uid">
+                <source>Facebook Uid</source>
                 <target>Facebook UID</target>
             </trans-unit>
-            <trans-unit id="show.label_facebook_name">
-                <source>show.label_facebook_name</source>
+            <trans-unit id="Facebook Name">
+                <source>Facebook Name</source>
                 <target>Facebook jméno</target>
             </trans-unit>
-            <trans-unit id="show.label_twitter_uid">
-                <source>show.label_twitter_uid</source>
+            <trans-unit id="Twitter Uid">
+                <source>Twitter Uid</source>
                 <target>Twitter UID</target>
             </trans-unit>
-            <trans-unit id="show.label_twitter_name">
-                <source>show.label_twitter_name</source>
+            <trans-unit id="Twitter Name">
+                <source>Twitter Name</source>
                 <target>Twitter jméno</target>
             </trans-unit>
-            <trans-unit id="show.label_gplus_uid">
-                <source>show.label_gplus_uid</source>
+            <trans-unit id="Gplus Uid">
+                <source>Gplus Uid</source>
                 <target>Google+ UID</target>
             </trans-unit>
-            <trans-unit id="show.label_gplus_name">
-                <source>show.label_gplus_name</source>
+            <trans-unit id="Gplus Name">
+                <source>Gplus Name</source>
                 <target>Google+ jméno</target>
             </trans-unit>
-            <trans-unit id="show.label_token">
-                <source>show.label_token</source>
+            <trans-unit id="Token">
+                <source>Token</source>
                 <target>Token</target>
             </trans-unit>
-            <trans-unit id="show.label_two_step_verification_code">
-                <source>show.label_two_step_verification_code</source>
+            <trans-unit id="Two Step Verification Code">
+                <source>Two Step Verification Code</source>
                 <target>Ověřovací kód</target>
+            </trans-unit>
+            <trans-unit id="User.Profile">
+                <source>User.Profile</source>
+                <target>Profil</target>
+            </trans-unit>
+            <trans-unit id="User.General">
+                <source>User.General</source>
+                <target>Obecné</target>
+            </trans-unit>
+            <trans-unit id="Group.General">
+                <source>Group.General</source>
+                <target>Obecné</target>
+            </trans-unit>
+            <trans-unit id="User.Social">
+                <source>User.Social</source>
+                <target>Sociální sítě</target>
+            </trans-unit>
+            <trans-unit id="Security.Status">
+                <source>Security.Status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="Security.Groups">
+                <source>Security.Groups</source>
+                <target>Skupiny</target>
+            </trans-unit>
+            <trans-unit id="Security.Keys">
+                <source>Security.Keys</source>
+                <target>Klíče</target>
+            </trans-unit>
+            <trans-unit id="Security.Roles">
+                <source>Security.Roles</source>
+                <target>Role</target>
+            </trans-unit>
+            <trans-unit id="Image">
+                <source>Image</source>
+                <target>Obrázek</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_user_show">
                 <source>breadcrumb.link_user_show</source>
@@ -420,39 +456,43 @@
             </trans-unit>
             <trans-unit id="sonata_user_profile_breadcrumb_index">
                 <source>sonata_user_profile_breadcrumb_index</source>
-                <target>sonata_user_profile_breadcrumb_index</target>
+                <target>Index</target>
             </trans-unit>
             <trans-unit id="sonata_user_profile_breadcrumb_edit">
                 <source>sonata_user_profile_breadcrumb_edit</source>
-                <target>sonata_user_profile_breadcrumb_edit</target>
+                <target>Upravit</target>
             </trans-unit>
             <trans-unit id="sonata_user_already_authenticated">
                 <source>sonata_user_already_authenticated</source>
-                <target>You are already logged in</target>
+                <target>Již jste přihlášen(a)</target>
             </trans-unit>
             <trans-unit id="security.login.username">
                 <source>security.login.username</source>
-                <target>security.login.username</target>
+                <target>Uživatelské jméno</target>
             </trans-unit>
             <trans-unit id="security.login.password">
                 <source>security.login.password</source>
-                <target>security.login.password</target>
+                <target>Heslo</target>
             </trans-unit>
             <trans-unit id="form.username">
                 <source>form.username</source>
-                <target>form.username</target>
+                <target>Uživatelské jméno</target>
+            </trans-unit>
+            <trans-unit id="Name">
+                <source>Name</source>
+                <target>Název</target>
             </trans-unit>
             <trans-unit id="form.email">
                 <source>form.email</source>
-                <target>form.email</target>
+                <target>E-mail</target>
             </trans-unit>
             <trans-unit id="form.password">
                 <source>form.password</source>
-                <target>form.password</target>
+                <target>Heslo</target>
             </trans-unit>
             <trans-unit id="form.password_confirmation">
                 <source>form.password_confirmation</source>
-                <target>form.password_erification</target>
+                <target>Kontrola hesla</target>
             </trans-unit>
         </body>
     </file>

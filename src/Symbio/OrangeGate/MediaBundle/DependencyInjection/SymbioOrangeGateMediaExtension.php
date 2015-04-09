@@ -24,5 +24,7 @@ class SymbioOrangeGateMediaExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        $loader->load('provider.yml');
+        $loader->load('form_types.yml');
     }
 }

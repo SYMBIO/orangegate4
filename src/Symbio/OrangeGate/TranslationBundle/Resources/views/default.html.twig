@@ -1,0 +1,33 @@
+{% block orangegate_translations_widget %}
+    {{ form_errors(form) }}
+    <div class="orangegate_translations tabbable">
+        <ul class="orangegate_translationsLocales nav nav-tabs">
+        {% for translationsFields in form %}
+            {% set locale = translationsFields.vars.name %}
+
+            <li {% if app.request.locale == locale %}class="active"{% endif %}>
+                <a href="#" data-toggle="tab" data-target=".orangegate_translationsFields-{{ locale }}">
+                    {{ locale|capitalize }}
+                    {% if form.vars.default_locale == locale %}[Default]{% endif %}
+                    {% if translationsFields.vars.required %}*{% endif %}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+
+        <div class="orangegate_translationsFields tab-content">
+        {% for translationsFields in form %}
+            {% set locale = translationsFields.vars.name %}
+
+            <div class="orangegate_translationsFields-{{ locale }} tab-pane {% if app.request.locale == locale %}active{% endif %}">
+                {{ form_errors(translationsFields) }}
+                {{ form_widget(translationsFields) }}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block orangegate_translationsForms_widget %}
+    {{ block('orangegate_translations_widget') }}
+{% endblock %}

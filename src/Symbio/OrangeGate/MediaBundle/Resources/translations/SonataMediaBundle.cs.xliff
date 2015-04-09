@@ -14,10 +14,6 @@
                 <source>news</source>
                 <target>Novinky</target>
             </trans-unit>
-            <trans-unit id="properties">
-                <source>properties</source>
-                <target>Nemovitosti</target>
-            </trans-unit>
             <trans-unit id="media">
                 <source>media</source>
                 <target>Média</target>
@@ -90,24 +86,24 @@
                 <source>description.forbidden_download_strategy</source>
                 <target>Soubor není přístupný pro nikoho.</target>
             </trans-unit>
-            <trans-unit id="filter.label_name">
-                <source>filter.label_name</source>
+            <trans-unit id="name">
+                <source>Name</source>
                 <target>Jméno</target>
             </trans-unit>
-            <trans-unit id="filter.label_provider_reference">
-                <source>filter.label_provider_reference</source>
+            <trans-unit id="Provider Reference">
+                <source>Provider Reference</source>
                 <target>Odkaz na poskytovatele</target>
             </trans-unit>
-            <trans-unit id="filter.label_enabled">
-                <source>filter.label_enabled</source>
+            <trans-unit id="Enabled">
+                <source>Enabled</source>
                 <target>Povolen</target>
             </trans-unit>
-            <trans-unit id="filter.label_context">
-                <source>filter.label_context</source>
+            <trans-unit id="Context">
+                <source>Context</source>
                 <target>Kontext</target>
             </trans-unit>
-            <trans-unit id="filter.label_provider_name">
-                <source>filter.label_provider_name</source>
+            <trans-unit id="Provider Name">
+                <source>Provider Name</source>
                 <target>Název poskytovatele</target>
             </trans-unit>
             <trans-unit id="form.label_enabled">
@@ -182,8 +178,8 @@
                 <source>label.copyright</source>
                 <target>Copyright</target>
             </trans-unit>
-            <trans-unit id="label.author_name">
-                <source>label.author_name</source>
+            <trans-unit id="Author Name">
+                <source>Author Name</source>
                 <target>Autor</target>
             </trans-unit>
             <trans-unit id="label.cdn">
@@ -389,13 +385,49 @@
                 <source>sonata_template_box_media_gallery_block</source>
                 <target>This is the gallery media block. Feel free to override it.</target>
             </trans-unit>
-            <trans-unit id="list.label_description">
-                <source>list.label_description</source>
+            <trans-unit id="Description">
+                <source>Description</source>
                 <target>Popis</target>
             </trans-unit>
-            <trans-unit id="list.label_size">
-                <source>list.label_size</source>
+            <trans-unit id="Size">
+                <source>Size</source>
                 <target>Velikost</target>
+            </trans-unit>
+            <trans-unit id="list.label_preview">
+                <source>list.label_preview</source>
+                <target>Náhled</target>
+            </trans-unit>
+            <trans-unit id="list.label_type">
+                <source>list.label_type</source>
+                <target>Typ</target>
+            </trans-unit>
+            <trans-unit id="list.label_filename">
+                <source>list.label_filename</source>
+                <target>Soubor</target>
+            </trans-unit>
+            <trans-unit id="list.enabled_yes">
+                <source>list.enabled_yes</source>
+                <target>Ano</target>
+            </trans-unit>
+            <trans-unit id="list.enabled_no">
+                <source>list.enabled_no</source>
+                <target>Ne</target>
+            </trans-unit>
+            <trans-unit id="Category">
+                <source>Category</source>
+                <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="cant_delete_message">
+                <source>cant_delete_message</source>
+                <target>Nelze zmazat tuto položku, protože je propojena s následujícími odkazy:</target>
+            </trans-unit>
+            <trans-unit id="return_to_edit">
+                <source>return_to_edit</source>
+                <target>Návrat</target>
+            </trans-unit>
+            <trans-unit id="related_objects">
+                <source>related_objects</source>
+                <target>Související objekty</target>
             </trans-unit>
         </body>
     </file>

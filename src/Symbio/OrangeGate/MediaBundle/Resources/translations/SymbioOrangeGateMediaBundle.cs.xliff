@@ -14,6 +14,10 @@
                 <source>Binary Content</source>
                 <target>Soubor</target>
             </trans-unit>
+            <trans-unit id="sidemenu.link_context_default">
+                <source>sidemenu.link_context_default</source>
+                <target>Výchozí</target>
+            </trans-unit>
             <trans-unit id="sidemenu.link_context_promo">
                 <source>sidemenu.link_context_promo</source>
                 <target>Proma</target>
@@ -21,10 +25,6 @@
             <trans-unit id="sidemenu.link_context_news">
                 <source>sidemenu.link_context_news</source>
                 <target>Novinky</target>
-            </trans-unit>
-            <trans-unit id="sidemenu.link_context_properties">
-                <source>sidemenu.link_context_properties</source>
-                <target>Properties</target>
             </trans-unit>
             <trans-unit id="sidemenu.link_context_user">
                 <source>sidemenu.link_context_user</source>
@@ -34,9 +34,37 @@
                 <source>sidemenu.link_context_sonata_collection</source>
                 <target>Kolekce</target>
             </trans-unit>
+            <trans-unit id="sidemenu.link_context_products">
+                <source>sidemenu.link_context_products</source>
+                <target>Produkty</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_context_lovochemie">
+                <source>sidemenu.link_context_lovochemie</source>
+                <target>Lovochemie</target>
+            </trans-unit>
             <trans-unit id="sidemenu.link_context_sonata_category">
                 <source>sidemenu.link_context_sonata_category</source>
                 <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_context_download">
+                <source>sidemenu.link_context_download</source>
+                <target>Ke stažení</target>
+            </trans-unit>
+            <trans-unit id="sidemenu.link_context_page">
+                <source>sidemenu.link_context_page</source>
+                <target>Stránky</target>
+            </trans-unit>
+            <trans-unit id="link_upload_new">
+                <source>link_upload_new</source>
+                <target>Nahrát obrázky</target>
+            </trans-unit>
+            <trans-unit id="link_list">
+                <source>link_list</source>
+                <target>Zvolit z nahraných</target>
+            </trans-unit>
+            <trans-unit id="label_dropzone">
+                <source>label_dropzone</source>
+                <target>Soubory můžete upustit zde</target>
             </trans-unit>
         </body>
     </file>

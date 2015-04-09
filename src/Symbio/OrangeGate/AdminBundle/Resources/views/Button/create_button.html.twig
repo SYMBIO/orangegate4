@@ -1,4 +1,4 @@
-{% if admin.hasRoute('create') and admin.isGranted('CREATE')%}
+{% if (admin.hasRoute('create') and admin.isGranted('CREATE')) or (admin.hasRoute('compose') and admin.isGranted('EDIT', admin.subject)) %}
     {% if admin.subClasses is empty %}
         <a class="btn btn-success sonata-action-element" href="{{ admin.generateUrl('create') }}">
             <i class="fa fa-plus"></i>&nbsp;

@@ -6,13 +6,13 @@
         <source>header.admin_dashboard</source>
         <target>Dashboard</target>
       </trans-unit>
-      <trans-unit id="header.page">
-        <source>header.page</source>
-        <target>Stránka</target>
+      <trans-unit id="header.other">
+        <source>header.other</source>
+        <target>Další</target>
       </trans-unit>
       <trans-unit id="header.edit_page">
         <source>header.edit_page</source>
-        <target>Upravit stránku</target>
+        <target>Upravit metadata</target>
       </trans-unit>
       <trans-unit id="header.create_snapshot">
         <source>header.create_snapshot</source>
@@ -28,7 +28,7 @@
       </trans-unit>
       <trans-unit id="header.compose_page">
         <source>header.compose_page</source>
-        <target>Upravit strukturu stránky</target>
+        <target>Upravit obsah stránky</target>
       </trans-unit>
       <trans-unit id="header.page_is_disabled">
         <source>header.page_is_disabled</source>
@@ -41,6 +41,10 @@
       <trans-unit id="header.switch_user_exit">
         <source>header.switch_user_exit</source>
         <target>Vrátit se na původního uživatele</target>
+      </trans-unit>
+      <trans-unit id="link_action_create_subpage">
+        <source>link_action_create_subpage</source>
+        <target>Vytvořit podstránku</target>
       </trans-unit>
     </body>
   </file>

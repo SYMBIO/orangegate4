@@ -2,7 +2,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('bundles/sonatapage/composer.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/symbioorangegatepage/js/composer.js') }}" type="text/javascript"></script>
 {% endblock %}
 
 {% block stylesheets %}
@@ -16,6 +16,16 @@
 
 {% block navbar_title %}
     {{ block('title') }}
+{% endblock %}
+
+{% block actions %}
+    {% include 'SymbioOrangeGatePageBundle:Button:create_button.html.twig' %}
+    <div class="btn-group">{% spaceless %}
+        {% include 'SymbioOrangeGateAdminBundle:Button:show_button.html.twig' %}
+        {% include 'SymbioOrangeGateAdminBundle:Button:history_button.html.twig' %}
+        {% include 'SymbioOrangeGateAdminBundle:Button:acl_button.html.twig' %}
+    {% endspaceless %}</div>
+    {#% include 'SymbioOrangeGateAdminBundle:Button:list_button.html.twig' %#}
 {% endblock %}
 
 {% block body_attributes %}class="sonata-bc skin-blue page-composer-page sonata-ba-no-side-menu"{% endblock %}
@@ -75,7 +85,7 @@ sonata_page:
         {% else %}
             <div class="row row-fluid">
                 <div class="col-md-4 span4">
-                    <div class="page-composer__page-preview">
+                    <div class="page-composer__page-preview" style="border:3px solid #404040">
                         <div class="page-composer__page-preview__containers">
                             {% for container in containers %}
                                 {% if container.block is defined and container.block %}

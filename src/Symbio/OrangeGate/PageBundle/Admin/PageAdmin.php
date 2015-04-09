@@ -11,7 +11,7 @@
 
 namespace Symbio\OrangeGate\PageBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Symbio\OrangeGate\AdminBundle\Admin\Admin as BaseAdmin;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -35,7 +35,7 @@ use Knp\Menu\ItemInterface as MenuItemInterface;
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class PageAdmin extends Admin
+class PageAdmin extends BaseAdmin
 {
     /**
      * @var PageManagerInterface
@@ -74,7 +74,6 @@ class PageAdmin extends Admin
             ->add('routeName')
             ->add('pageAlias')
             ->add('type')
-            ->add('enabled')
             ->add('decorate')
             ->add('name')
             ->add('slug')
@@ -95,7 +94,6 @@ class PageAdmin extends Admin
             ->add('pageAlias')
             ->add('site')
             ->add('decorate', null, array('editable' => true))
-            ->add('enabled', null, array('editable' => true))
             ->add('edited', null, array('editable' => true))
         ;
     }
@@ -114,75 +112,104 @@ class PageAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
         // define group zoning
         $formMapper
-             ->with($this->trans('form_page.group_main_label'), array('class' => 'col-md-6'))->end()
-             ->with($this->trans('form_page.group_seo_label'), array('class' => 'col-md-6'))->end()
+             ->with($this->trans('form_page.group_basic_label'), array('class' => 'col-md-6'))->end()
+             ->with($this->trans('form_page.group_settings_label'), array('class' => 'col-md-6'))->end()
              ->with($this->trans('form_page.group_advanced_label'), array('class' => 'col-md-6'))->end()
         ;
 
-
         if (!$this->getSubject() || (!$this->getSubject()->isInternal() && !$this->getSubject()->isError())) {
             $formMapper
-                ->with($this->trans('form_page.group_main_label'))
-                    ->add('url', 'text', array('attr' => array('readonly' => 'readonly')))
+                ->with($this->trans('form_page.group_basic_label'))
+                    ->add('translations', 'orangegate_translations', array(
+                        'label' => false,
+                        'locales' => array('cs', 'en', 'de'),
+                        'fields' => array(
+                                'enabled' => array(
+                                    'field_type' => 'checkbox',
+                                    'required' => false,
+                                ),
+                                'name' => array(
+                                    'field_type' => 'text',
+                                    'required' => false,
+                                ),
+                                'description' => array(
+                                    'field_type' => 'textarea',
+                                    'required' => false,
+                                ),
+                                'slug' => array(
+                                    'field_type' => 'text',
+                                    'required' => false,
+                                ),
+                                'url' => array(
+                                    'field_type' => 'text',
+                                    'attr' => array('readonly' => 'readonly'),
+                                ),
+                                'title' => array(
+                                    'field_type' => 'text',
+                                    'required' => false,
+                                ),
+                                'metaKeyword' => array(
+                                    'field_type' => 'textarea',
+                                    'required' => false,
+                                ),
+                                'metaDescription' => array(
+                                    'field_type' => 'textarea',
+                                    'required' => false,
+                                ),
+                            ),
+                    ))
                 ->end()
             ;
         }
 
-        if ($this->hasSubject() && !$this->getSubject()->getId()) {
+        if ($this->hasSubject() && !$this->getSubject()->getId() && !$this->getSubject()->getSite()) {
             $formMapper
-                ->with($this->trans('form_page.group_main_label'))
+                ->with($this->trans('form_page.group_settings_label'))
                     ->add('site', null, array('required' => true, 'read_only' => true))
                 ->end();
         }
 
         $formMapper
-            ->with($this->trans('form_page.group_main_label'))
-                ->add('name')
-                ->add('enabled', null, array('required' => false))
+            ->with($this->trans('form_page.group_settings_label'))
+                ->add('templateCode', 'sonata_page_template', array('required' => true))
+                ->add('parent', 'orangegate_page_selector', array(
+                    'page'          => $this->getSubject() ?: null,
+                    'site'          => $this->getSubject() ? $this->getSubject()->getSite() : null,
+                    'model_manager' => $this->getModelManager(),
+                    'class'         => $this->getClass(),
+                    'required'      => !$this->isGranted('EDIT'),
+                    //'filter_choice' => array('root' => $this->isGranted('EDIT') ? false : $this->getSubject->getParent()),
+                ), array(
+                    'link_parameters' => array(
+                        'siteId' => $this->getSubject() ? $this->getSubject()->getSite()->getId() : null
+                    )
+                ))
+                ->add('icon', 'sonata_type_model_list', array('required' => false), array(
+                    'placeholder' => 'No image selected',
+                    'link_parameters' => array(
+                        'context' => 'lovochemie',
+                        'provider' => 'sonata.media.provider.image',
+                        'category' => 108,
+                        'hide_context' => true,
+                    )
+                ))
                 ->add('position')
             ->end();
 /*
         if ($this->hasSubject() && !$this->getSubject()->isInternal()) {
             $formMapper
-                ->with($this->trans('form_page.group_main_label'))
+                ->with($this->trans('form_page.group_settings_label'))
                     ->add('type', 'sonata_page_type_choice', array('required' => false))
-                ->end()
-            ;
-        }
-*/
-        $formMapper
-            ->with($this->trans('form_page.group_main_label'))
-                ->add('templateCode', 'sonata_page_template', array('required' => true))
-            ->end()
-        ;
-
-        if (!$this->getSubject() || ($this->getSubject() && $this->getSubject()->getParent()) || ($this->getSubject() && !$this->getSubject()->getId())) {
-            $formMapper
-                ->with($this->trans('form_page.group_main_label'))
-                    ->add('parent', 'sonata_page_selector', array(
-                        'page'          => $this->getSubject() ?: null,
-                        'site'          => $this->getSubject() ? $this->getSubject()->getSite() : null,
-                        'model_manager' => $this->getModelManager(),
-                        'class'         => $this->getClass(),
-                        'required'      => false,
-                        'filter_choice' => array('hierarchy' => 'root'),
-                    ), array(
-                        'link_parameters' => array(
-                            'siteId' => $this->getSubject() ? $this->getSubject()->getSite()->getId() : null
-                        )
-                    ))
                 ->end()
             ;
         }
 
         if (!$this->getSubject() || !$this->getSubject()->isDynamic()) {
             $formMapper
-                ->with($this->trans('form_page.group_main_label'))
-                    ->add('pageAlias', null, array('required' => false))
-                    /*->add('target', 'sonata_page_selector', array(
+                ->with($this->trans('form_page.group_settings_label'))
+                    ->add('target', 'sonata_page_selector', array(
                         'page'          => $this->getSubject() ?: null,
                         'site'          => $this->getSubject() ? $this->getSubject()->getSite() : null,
                         'model_manager' => $this->getModelManager(),
@@ -193,27 +220,11 @@ class PageAdmin extends Admin
                         'link_parameters' => array(
                             'siteId' => $this->getSubject() ? $this->getSubject()->getSite()->getId() : null
                         )
-                    ))*/
+                    ))
                 ->end()
             ;
         }
-
-        if (!$this->getSubject() || !$this->getSubject()->isHybrid()) {
-            $formMapper
-                ->with($this->trans('form_page.group_seo_label'))
-                    ->add('slug', 'text',  array('required' => false))
-                    ->add('customUrl', 'text', array('required' => false))
-                ->end()
-            ;
-        }
-
-        $formMapper
-            ->with($this->trans('form_page.group_seo_label'), array('collapsed' => false))
-                ->add('title', null, array('required' => false))
-                ->add('metaKeyword', 'textarea', array('required' => false))
-                ->add('metaDescription', 'textarea', array('required' => false))
-            ->end()
-        ;
+*/
 
         if ($this->hasSubject() && !$this->getSubject()->isCms()) {
             $formMapper
@@ -224,6 +235,7 @@ class PageAdmin extends Admin
 
         $formMapper
             ->with($this->trans('form_page.group_advanced_label'), array('collapsed' => false))
+                ->add('pageAlias', null, array('required' => false))
                 ->add('javascript', null,  array('required' => false))
                 ->add('stylesheet', null, array('required' => false))
                 ->add('rawHeaders', null, array('required' => false))
@@ -262,38 +274,14 @@ class PageAdmin extends Admin
 
         $menu->addChild(
             $this->trans('sidemenu.link_list_blocks'),
-            array('uri' => $admin->generateUrl('sonata.page.admin.block.list', array('id' => $id)), 'attributes' => array('class' => $admin->getRequest()->get('_route') == 'admin_orangegate_page_page_block_list' ? 'active' : ''))
+            array('uri' => $admin->getChild('sonata.page.admin.block')->generateUrl('list', array('id' => $id)), 'attributes' => array('class' => $admin->getRequest()->get('_route') == 'admin_orangegate_page_page_block_list' ? 'active' : ''))
         );
 
-        $menu->addChild(
-            $this->trans('sidemenu.link_list_snapshots'),
-            array('uri' => $admin->generateUrl('sonata.page.admin.snapshot.list', array('id' => $id)), 'attributes' => array('class' => $admin->getRequest()->get('_route') == 'admin_orangegate_page_page_snapshot_list' ? 'active' : ''))
-        );
-
-        if (!$this->getSubject()->isHybrid() && !$this->getSubject()->isInternal()) {
-
-            try {
-                $menu->addChild(
-                    $this->trans('view_page'),
-                    array('uri' => $this->getRouteGenerator()->generate('page_slug', array('path' => $this->getSubject()->getUrl())))
-                );
-            } catch (\Exception $e) {
-                // avoid crashing the admin if the route is not setup correctly
-//                throw $e;
-            }
-        }
-
-        foreach ($this->getSites() as $site) {
-            if ($site->getId() !== $this->getSubject()->getSite()->getId()) {
-                $page = $this->pageManager->findOneBy(array('site' => $site, 'pageAlias' => $this->getSubject()->getPageAlias()));
-
-                if ($page) {
-                    $menu->addChild(
-                        '<em class="flag flag-'.$site->getLocale().'">'.$site->getLocale().'</em>',
-                        array('uri' => $admin->generateUrl('compose', array('id' => $page->getId())))
-                    );
-                }
-            }
+        if ($this->securityHandler->isGranted($this->getChild('sonata.page.admin.snapshot'), 'EDIT', $this->getChild('sonata.page.admin.snapshot'))) {
+            $menu->addChild(
+                $this->trans('sidemenu.link_list_snapshots'),
+                array('uri' => $admin->generateUrl('sonata.page.admin.snapshot.list', array('id' => $id)), 'attributes' => array('class' => $admin->getRequest()->get('_route') == 'admin_orangegate_page_page_snapshot_list' ? 'active' : ''))
+            );
         }
     }
 
@@ -303,6 +291,8 @@ class PageAdmin extends Admin
     public function preUpdate($object)
     {
         $object->setEdited(true);
+
+        $this->pageManager->fixUrl($object);
     }
 
     /**
@@ -323,6 +313,12 @@ class PageAdmin extends Admin
     public function prePersist($object)
     {
         $object->setEdited(true);
+
+        foreach ($object->getTranslations() as $t) {
+            $t->setObject($object);
+        }
+
+        $this->pageManager->fixUrl($object);
     }
 
     /**
@@ -440,5 +436,10 @@ class PageAdmin extends Admin
     public function setCacheManager(CacheManagerInterface $cacheManager)
     {
         $this->cacheManager = $cacheManager;
+    }
+
+    public function getLanguages()
+    {
+        return array('cs', 'en', 'de');
     }
 }

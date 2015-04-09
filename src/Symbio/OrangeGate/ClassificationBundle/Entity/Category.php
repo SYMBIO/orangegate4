@@ -37,6 +37,11 @@ class Category extends BaseCategory
      */
     protected $media;
 
+    public function __construct()
+    {
+        $this->enabled = true;
+    }
+
     /**
      * Get id
      *

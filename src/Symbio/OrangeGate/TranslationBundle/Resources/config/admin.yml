@@ -1,0 +1,16 @@
+services:
+    orangegate.admin.token:
+        class: Symbio\OrangeGate\TranslationBundle\Admin\LanguageTokenAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Content, label: Překlady }
+        arguments: [null, Symbio\OrangeGate\TranslationBundle\Entity\LanguageToken, null]
+        calls:
+            - [ setTranslationDomain, [SymbioOrangeGateTranslationBundle] ]
+
+    orangegate.admin.translation:
+        class: Symbio\OrangeGate\TranslationBundle\Admin\LanguageTranslationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Content, label: Překlady }
+        arguments: [null, Symbio\OrangeGate\TranslationBundle\Entity\LanguageTranslation, null]
+        calls:
+            - [ setTranslationDomain, [SymbioOrangeGateTranslationBundle] ]

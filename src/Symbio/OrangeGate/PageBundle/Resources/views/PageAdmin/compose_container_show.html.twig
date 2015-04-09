@@ -5,7 +5,7 @@
 
     <div class="page-composer__block-type-selector">
         <label>{{ 'composer.block.add.type'|trans({}, 'SonataPageBundle') }}</label>
-        <select class="page-composer__block-type-selector__select">
+        <select class="page-composer__block-type-selector__select" style="width:auto">
             {% for blockServiceId, blockService in blockServices %}
                 <option value="{{ blockServiceId }}">{{ blockService.name }}</option>
             {% endfor %}
@@ -25,17 +25,22 @@
             <li class="page-composer__container__child"
                 data-block-id="{{ child.id }}" data-parent-block-id="{{ container.id }}"
             >
-                <a class="page-composer__container__child__edit"
+                <a class="page-composer__container__child__edit sortable-handle"
                    href="{{ path('admin_orangegate_page_block_edit', { 'id': child.id }) }}"
                 >
                     <h4>{{ child.name|default(attribute(blockServices, child.type).name) }}</h4>
-                    <small>{{ attribute(blockServices, child.type).name }}</small>
+                    <small></small>
                     <span class="page-composer__container__child__toggle">
                         <i class="fa fa-chevron-down"></i>
                         <i class="fa fa-chevron-up"></i>
                     </span>
                 </a>
-
+                <div class="revision" style="position:absolute; right:100px; top:10px;">
+                {% if block_admin.hasroute('history') and block_admin.id(child) and block_admin.isGranted('EDIT', child) %}
+                        <a class="badge" href="{{ block_admin.generateObjectUrl('history', child) }}">
+                            {{ 'link_action_history'|trans({}, 'SonataAdminBundle') }}</a>
+                {% endif %}
+                </div>
                 <div class="page-composer__container__child__remove">
                     <a class="badge" href="{{ path('admin_orangegate_page_block_delete', { 'id': child.id }) }}">{{ 'composer.remove'|trans({}, 'SonataPageBundle') }} <i class="fa fa-times"></i> </a>
                     <span class="page-composer__container__child__remove__confirm">
