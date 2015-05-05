@@ -222,6 +222,8 @@ class Page implements PageInterface
      */
     protected $translations;
 
+    protected static $slugifyMethod;
+
     /**
      * Constructor
      */
@@ -1236,4 +1238,21 @@ class Page implements PageInterface
 
         return $rawHeaders;
     }
+
+    /**
+     * @return mixed
+     */
+    public static function getSlugifyMethod()
+    {
+        return self::$slugifyMethod;
+    }
+
+    /**
+     * @param mixed $slugifyMethod
+     */
+    public static function setSlugifyMethod(\Closure $slugifyMethod)
+    {
+        self::$slugifyMethod = $slugifyMethod;
+    }
+
 }

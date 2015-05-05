@@ -17,7 +17,7 @@ sonata_admin:
         # permission related to the objects
         object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
 
-    title:      OrangeGate4 Admin
+    title:      OrangeGate4
 
     options:
         html5_validate: false # does not use html5 validation
@@ -25,26 +25,28 @@ sonata_admin:
         title_mode: single_text
 
     templates:
-        layout:  SymbioOrangeGateAdminBundle::layout.html.twig
+        layout:  SymbioOrangeGateAdminBundle::standard_layout.html.twig
 
     assets:
         stylesheets:
             - 'bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css'
             - 'bundles/sonatacore/vendor/components-font-awesome/css/font-awesome.min.css'
             - 'bundles/sonatacore/vendor/ionicons/css/ionicons.min.css'
-            - 'bundles/sonataadmin/vendor/AdminLTE/css/AdminLTE.css'
+            - 'bundles/sonataadmin/vendor/admin-lte/dist/css/AdminLTE.css'
+            - 'bundles/sonataadmin/vendor/admin-lte/dist/css/skins/skin-blue.min.css'
+            - 'bundles/sonataadmin/vendor/iCheck/skins/flat/blue.css'
             - 'bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
             - 'bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css'
             - 'bundles/sonatacore/vendor/select2/select2.css'
             - 'bundles/sonatacore/vendor/select2/select2-bootstrap.css'
             - 'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css'
             - 'bundles/sonataformatter/markitup/skins/sonata/style.css'
-            - 'bundles/sonataformatter/markitup/sets/markdown/style.css'
             - 'bundles/sonataformatter/markitup/sets/html/style.css'
             - 'bundles/sonataformatter/markitup/sets/textile/style.css'
             - 'bundles/sonataadmin/css/styles.css'
             - 'bundles/sonataadmin/css/layout.css'
             - 'bundles/sonataadmin/css/tree.css'
+            - 'bundles/sonatapage/sonata-page.back.min.css'
             - 'bundles/symbioorangegateadmin/css/flags.css'
             - 'bundles/symbioorangegateadmin/css/og.css'
         javascripts:
@@ -57,18 +59,20 @@ sonata_admin:
             - 'bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js'
             - 'bundles/sonataadmin/jquery/jquery.form.js'
             - 'bundles/sonataadmin/jquery/jquery.confirmExit.js'
-            - 'bundles/symbioorangegatemedia/js/jquery-file-upload/jquery.iframe-transport.js'
-            - 'bundles/symbioorangegatemedia/js/jquery-file-upload/jquery.fileupload.js'
             - 'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js'
             - 'bundles/sonatacore/vendor/select2/select2.min.js'
+            - 'bundles/sonataadmin/vendor/admin-lte/dist/js/app.min.js'
+            - 'bundles/sonataadmin/vendor/iCheck/icheck.min.js'
+            - 'bundles/sonataadmin/vendor/slimScroll/jquery.slimscroll.min.js'
             - 'bundles/ivoryckeditor/ckeditor.js'
             - 'bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js'
-            - 'bundles/sonataformatter/markitup/sets/markdown/set.js'
             - 'bundles/sonataformatter/markitup/sets/html/set.js'
             - 'bundles/sonataformatter/markitup/sets/textile/set.js'
-            - 'bundles/sonataadmin/App.js'
             - 'bundles/sonataadmin/Admin.js'
             - 'bundles/sonataadmin/treeview.js'
+            - 'bundles/sonatapage/sonata-page.back.min.js'
+            - 'bundles/symbioorangegatemedia/js/jquery-file-upload/jquery.iframe-transport.js'
+            - 'bundles/symbioorangegatemedia/js/jquery-file-upload/jquery.fileupload.js'
 
     dashboard:
         blocks:

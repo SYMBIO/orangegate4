@@ -4,6 +4,7 @@ namespace Symbio\OrangeGate\PageBundle\Controller;
 
 use Sonata\PageBundle\Controller\PageAdminController as Controller;
 use Sonata\AdminBundle\Controller\CRUDController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -18,12 +19,12 @@ class PageAdminController extends Controller
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction()
+    public function listAction(Request $request = NULL)
     {
         return new RedirectResponse($this->admin->generateUrl('tree'));
     }
 
-    public function createAction()
+    public function createAction(Request $request = NULL)
     {
         if ($parentId = $this->getRequest()->query->get('parentId')) {
             $parent = $this->admin->getObject($parentId);
@@ -152,7 +153,7 @@ class PageAdminController extends Controller
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws NotFoundHttpException
      */
-    public function composeAction()
+    public function composeAction(Request $request = NULL)
     {
         $id = $this->get('request')->get($this->admin->getIdParameter());
         $object = $this->admin->getObject($id);
@@ -165,17 +166,17 @@ class PageAdminController extends Controller
             throw new AccessDeniedException();
         }
 
-        return parent::composeAction();
+        return parent::composeAction($request);
     }
 
-    public function showAction($id = null)
+    public function showAction($id = null, Request $request = NULL)
     {
         $page = $this->admin->getObject($id);
         if (!$page->isHybrid() && !$page->isInternal()) {
             return new RedirectResponse($this->get('router')->generate('page_slug', array('path' => $page->getUrl())));
         }
 
-        return parent::showAction();
+        return parent::showAction($request);
     }
 
     /**
@@ -184,7 +185,7 @@ class PageAdminController extends Controller
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws NotFoundHttpException
      */
-    public function composeContainerShowAction()
+    public function composeContainerShowAction(Request $request = NULL)
     {
         $id    = $this->get('request')->get($this->admin->getIdParameter());
         $block = $this->get('sonata.page.admin.block')->getObject($id);

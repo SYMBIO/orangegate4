@@ -1,14 +1,3 @@
-{#
-
-This file is part of the Sonata package.
-
-(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
-
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code.
-
-#}
-
 {% extends 'SonataAdminBundle:CRUD:base_list.html.twig' %}
 
 {% import _self as tree %}
@@ -19,10 +8,10 @@ file that was distributed with this source code.
                 <div class="page-tree__item clearfix">
                     {% if page.parent %}<i class="fa fa-caret-right"></i>{% endif %}
                     <i class="fa page-tree__item__is-hybrid fa-{% if page.isHybrid %}gears{% else %}code{% endif %}"></i>
-                    {% if is_granted('EDIT', page) %}
+                    {% if is_granted('EDIT') or is_granted('EDIT', page) %}
                         <a class="page-tree__item__edit" href="{{ admin.generateObjectUrl('compose', page) }}">{{ page.name }}</a>
                         <i class="text-muted">{{ page.url }}</i>
-                        <a class="btn btn-primary btn-sm pull-right" style="margin-left: 20px" href="{{ admin.generateObjectUrl('edit', page) }}"><i class="fa fa-pencil-square-o"> Upravit metadata</i></a>
+                        <a class="btn btn-primary btn-xs pull-right" style="margin-left: 20px" href="{{ admin.generateObjectUrl('edit', page) }}"><i class="fa fa-pencil-square-o"> Upravit metadata</i></a>
                     {% else %}
                         <span class="page-tree__item__edit"}}">{{ page.name }}</span>
                         <i class="text-muted">{{ page.url }}</i>
@@ -37,12 +26,13 @@ file that was distributed with this source code.
     </ul>
 {% endmacro %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('bundles/sonatapage/tree.css') }}" type="text/css" media="screen" />
-{% endblock %}
-
 {% block tab_menu %}
+    {% include 'SonataPageBundle:PageAdmin:list_tab_menu.html.twig' with {
+    'mode':        'tree',
+    'action':      action,
+    'admin':       admin,
+    'currentSite': currentSite,
+    } only %}
 {% endblock %}
 
 {% block list_table %}
@@ -73,6 +63,6 @@ file that was distributed with this source code.
         </div>
         <div class="box-content">
             {{ tree.pages(pages, admin, true) }}
-        </div>+
+        </div>
     </div>
 {% endblock %}

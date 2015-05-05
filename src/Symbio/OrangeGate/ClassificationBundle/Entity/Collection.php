@@ -2,7 +2,7 @@
 
 namespace Symbio\OrangeGate\ClassificationBundle\Entity;
 
-use Sonata\ClassificationBundle\Entity\BaseCollection as BaseCollection;
+use Sonata\ClassificationBundle\Entity\BaseCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,9 +21,15 @@ class Collection extends BaseCollection
 
     /**
      * @ORM\ManyToOne(targetEntity="Context", inversedBy="categories")
-     * @ORM\JoinColumn(name="context_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="context", referencedColumnName="id", nullable=true)
      */
     protected $context;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Symbio\OrangeGate\MediaBundle\Entity\Media", inversedBy="collections")
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id", nullable=true)
+     */
+    protected $media;
 
     /**
      * Get id
@@ -33,28 +39,5 @@ class Collection extends BaseCollection
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set context
-     *
-     * @param \Symbio\OrangeGate\ClassificationBundle\Entity\Context $context
-     * @return Collection
-     */
-    public function setContext(\Sonata\ClassificationBundle\Model\ContextInterface $context)
-    {
-        $this->context = $context;
-
-        return $this;
-    }
-
-    /**
-     * Get context
-     *
-     * @return \Symbio\OrangeGate\ClassificationBundle\Entity\Context
-     */
-    public function getContext()
-    {
-        return $this->context;
     }
 }

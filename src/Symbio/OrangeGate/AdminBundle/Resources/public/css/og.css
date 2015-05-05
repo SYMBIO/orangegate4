@@ -6,13 +6,16 @@
 	margin: 0 0 10px 0;
 }
 
-.right-side > .content-header {
+.content-wrapper > .content-header {
 	padding-bottom: 10px;
 }
 
-.right-side > .content-actions {
-	padding: 20px 15px 0;
-	background: #f9f9f9;
+.content-wrapper > .content-actions {
+	margin-left: 15px;
+}
+
+.content-wrapper > .content-actions > .action-bar {
+    padding-bottom: 10px;
 }
 
 .box-content {

@@ -13,13 +13,6 @@ sonata_media_pixlr:
     resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
     prefix:   /media
 
-cmf_tree:
-    resource: .
-    type: 'cmf_tree'
-
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
 oneup_uploader:
     resource: .
     type: uploader

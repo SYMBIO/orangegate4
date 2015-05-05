@@ -106,7 +106,6 @@ doctrine:
         password: "%database_password%"
         types:
             json:     Sonata\Doctrine\Types\JsonType
-            currency: Sonata\Component\Currency\CurrencyDoctrineType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
@@ -141,10 +140,6 @@ doctrine:
                 radians: Symbio\OrangeGate\AdminBundle\DQL\Radians
                 power: Symbio\OrangeGate\AdminBundle\DQL\Power
                 pi: Symbio\OrangeGate\AdminBundle\DQL\Pi
-        filters:
-            softdeleteable:
-                class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
-                enabled: true
 
 # Menu Configuration
 knp_menu:

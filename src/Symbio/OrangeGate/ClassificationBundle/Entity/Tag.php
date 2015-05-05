@@ -21,7 +21,7 @@ class Tag extends BaseTag
 
     /**
      * @ORM\ManyToOne(targetEntity="Context", inversedBy="categories")
-     * @ORM\JoinColumn(name="context_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="context", referencedColumnName="id", nullable=true)
      */
     protected $context;
 

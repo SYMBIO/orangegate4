@@ -12,13 +12,14 @@ cmf_routing:
 sonata_page:
     multisite:             host_with_path # host
     use_streamed_response: false # set the value to false in debug mode or if the reverse proxy does not handle streamed response
+    slugify_service:       sonata.core.slugify.cocur
 
     ignore_uri_patterns:
-        - ^/admin(.*)
-        - ^/api/(.*)
+        - ^/admin\/
+        - ^/api\/
 
     ignore_route_patterns:
-        - (.*)admin(.*)     # ignore admin route, ie route containing 'admin'
+        - ^(.*)admin(.*)     # ignore admin route, ie route containing 'admin'
         - ^_(.*)            # ignore symfony routes
         - ^sonata_user_(.*)
         - ^fos_user_(.*)
@@ -56,7 +57,7 @@ sonata_page:
         block: Symbio\OrangeGate\PageBundle\Entity\Block
         site: Symbio\OrangeGate\PageBundle\Entity\Site
 
-    default_template: #insert the concrete one from templates
+    default_template: default
 
     assets:
         stylesheets:
@@ -68,7 +69,7 @@ sonata_page:
             - bundles/sonatapage/page.js
 
     templates:
-    #here you can insert some templates like 1 column, 3 columns etc.
+        default:  { path: 'SonataPageBundle::layout.html.twig', name: 'default' }
 
     page_defaults:
         homepage: { decorate: true, enabled: true }

@@ -102,7 +102,7 @@ class PageManager extends BaseEntityManager implements PageManagerInterface
 
         $query->setHint(
             \Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE,
-            $site->getLocale()
+            $site->getLanguageVersions()[0]->getLocale()
         );
 
         $pages = $query->execute();
