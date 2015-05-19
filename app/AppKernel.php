@@ -91,6 +91,7 @@ class AppKernel extends Kernel
             new Symbio\OrangeGate\DoctrineORMAdminBundle\SymbioOrangeGateDoctrineORMAdminBundle(),
             new Symbio\OrangeGate\TimelineBundle\SymbioOrangeGateTimelineBundle(),
             new Symbio\OrangeGate\TranslationBundle\SymbioOrangeGateTranslationBundle(),
+            new Symbio\OrangeGate\RevisionBundle\RevisionBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

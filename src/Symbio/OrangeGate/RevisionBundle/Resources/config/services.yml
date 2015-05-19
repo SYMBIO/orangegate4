@@ -1,0 +1,5 @@
+services:
+    revision.subscriber:
+        class: Symbio\OrangeGate\RevisionBundle\EventListener\RelationAudit
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
