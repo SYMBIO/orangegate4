@@ -185,27 +185,41 @@ class PageAdminController extends Controller
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws NotFoundHttpException
      */
-    public function composeContainerShowAction(Request $request = NULL)
+    public function composeContainerShowAction(Request $request = null)
     {
-        $id    = $this->get('request')->get($this->admin->getIdParameter());
+        if (false === $this->get('sonata.page.admin.block')->isGranted('LIST')) {
+            throw new AccessDeniedException();
+        }
+
+        $id    = $request->get($this->admin->getIdParameter());
         $block = $this->get('sonata.page.admin.block')->getObject($id);
         if (!$block) {
             throw new NotFoundHttpException(sprintf('unable to find the block with id : %s', $id));
         }
 
-        if ($block->getPage() && false === $this->admin->isGranted('EDIT', $block->getPage())) {
-            throw new AccessDeniedException();
-        }
-
         $blockServices = $this->get('sonata.block.manager')->getServicesByContext('sonata_page_bundle', false);
 
-        $block_admin = $this->container->get('sonata.admin.pool')->getAdminByClass(get_class($block));
+        // filter service using the template configuration
+        if ($page = $block->getPage()) {
+            $template = $this->get('sonata.page.template_manager')->get($page->getTemplateCode());
+
+            $container = $template->getContainer($block->getSetting('code'));
+
+            if (count($container['blocks']) > 0) {
+                foreach($blockServices as $code => $service) {
+                    if (in_array($code, $container['blocks'])) {
+                        continue;
+                    }
+
+                    unset($blockServices[$code]);
+                }
+            }
+        }
 
         return $this->render('SonataPageBundle:PageAdmin:compose_container_show.html.twig', array(
             'blockServices' => $blockServices,
             'container'     => $block,
             'page'          => $block->getPage(),
-            'block_admin' 	=> $block_admin
         ));
     }
 }

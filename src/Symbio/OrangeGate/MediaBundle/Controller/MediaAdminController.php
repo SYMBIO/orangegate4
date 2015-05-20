@@ -4,6 +4,7 @@ namespace Symbio\OrangeGate\MediaBundle\Controller;
 
 use CoopTilleuls\Bundle\CKEditorSonataMediaBundle\Controller\MediaAdminController as Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -19,7 +20,7 @@ class MediaAdminController extends Controller
      * @throws NotFoundHttpException If the object does not exist
      * @throws AccessDeniedException If access is not granted
      */
-    public function editAction($id = null)
+    public function editAction($id = null, Request $request = null)
     {
         // the key used to lookup the template
         $templateKey = 'edit';
@@ -182,7 +183,7 @@ class MediaAdminController extends Controller
      * @throws NotFoundHttpException If the object does not exist
      * @throws AccessDeniedException If access is not granted
      */
-    public function deleteAction($id)
+    public function deleteAction($id, Request $request = null)
     {
         $id     = $this->get('request')->get($this->admin->getIdParameter());
         $object = $this->admin->getObject($id);
