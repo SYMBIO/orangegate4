@@ -16,3 +16,5 @@ Instalation
 1. php app/console fos:user:promote<br>
    admin<br>
    ROLE_SUPER_ADMIN
+
+1. http://...../admin goes to CMS login page
