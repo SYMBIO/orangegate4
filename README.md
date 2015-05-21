@@ -8,6 +8,8 @@ Instalation
 
 1. composer create-project symbio/orangegate4
 
+1. php app/console doctrine:schema:update --force
+
 1. php app/console fos:user:create
    admin
 
