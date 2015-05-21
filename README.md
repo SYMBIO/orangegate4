@@ -10,7 +10,7 @@ Instalation
 
 1. php app/console doctrine:schema:update --force
 
-1. php app/console fos:user:create
+1. php app/console fos:user:create<br>
    admin
 
 1. php app/console fos:user:promote<br>
