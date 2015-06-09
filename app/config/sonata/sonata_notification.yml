@@ -33,4 +33,3 @@ doctrine:
             default:
                 mappings:
                     SonataNotificationBundle: ~
-                    SymbioOrangeGateNotificationBundle: ~

@@ -86,7 +86,6 @@ class AppKernel extends Kernel
             new Symbio\OrangeGate\NewsBundle\SymbioOrangeGateNewsBundle(),
             new Symbio\OrangeGate\MediaBundle\SymbioOrangeGateMediaBundle(),
             new Symbio\OrangeGate\ClassificationBundle\SymbioOrangeGateClassificationBundle(),
-            new Symbio\OrangeGate\NotificationBundle\SymbioOrangeGateNotificationBundle(),
             new Symbio\OrangeGate\AdminBundle\SymbioOrangeGateAdminBundle(),
             new Symbio\OrangeGate\DoctrineORMAdminBundle\SymbioOrangeGateDoctrineORMAdminBundle(),
             new Symbio\OrangeGate\TimelineBundle\SymbioOrangeGateTimelineBundle(),
