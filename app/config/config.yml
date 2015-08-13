@@ -10,7 +10,7 @@ imports:
 
     # FriendOfSymfony Bundles
     #- { resource: fos/fos_comment.yml }
-    #- { resource: fos/fos_rest.yml }
+    - { resource: fos/fos_rest.yml }
     - { resource: fos/fos_user.yml }
     #- { resource: fos/fos_elastica.yml }
 
@@ -77,6 +77,12 @@ twig:
             - 'SonataCoreBundle:Form:datepicker.html.twig'
             - 'SonataFormatterBundle:Form:formatter.html.twig'
 
+services:
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
@@ -140,6 +146,9 @@ doctrine:
                 radians: Symbio\OrangeGate\AdminBundle\DQL\Radians
                 power: Symbio\OrangeGate\AdminBundle\DQL\Power
                 pi: Symbio\OrangeGate\AdminBundle\DQL\Pi
+                regexp: Symbio\OrangeGate\AdminBundle\DQL\Regexp
+                collate: Symbio\OrangeGate\AdminBundle\DQL\Collate
+                cast: Symbio\OrangeGate\AdminBundle\DQL\Cast
 
 # Menu Configuration
 knp_menu:
@@ -177,6 +186,10 @@ lunetics_locale:
 #         almond_path:             ~
 
 ivory_ck_editor:
+    plugins:
+        youtube:
+            path: "/bundles/symbioorangegateadmin/plugins/youtube/"
+            filename: "plugin.js"
     default_config: default
     configs:
         default:
@@ -191,6 +204,22 @@ ivory_ck_editor:
             filebrowserImageUploadRouteParameters:
                 provider: sonata.media.provider.image
                 context: default
+        formatter:
+            toolbar: [["Styles"],["Bold","Italic","Underline","Subscript","Superscript","-","Cut","Copy","Paste","-","Undo","Redo","-","NumberedList","BulletedList","-","Outdent","Indent","-","Blockquote","-","Image", "Youtube","Link","Unlink","Table"],["Maximize","Source"]]
+            filebrowserBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRouteParameters:
+                provider: sonata.media.provider.image
+            filebrowserUploadRoute: admin_orangegate_media_media_upload
+            filebrowserUploadRouteParameters:
+                provider: sonata.media.provider.file
+            filebrowserImageUploadRoute: admin_orangegate_media_media_upload
+            filebrowserImageUploadRouteParameters:
+                provider: sonata.media.provider.image
+            format_tags: "p;h2;h3;h4;pre;address;div"
+            extraAllowedContent: "h1 h2 h3 h4"
+            stylesSet: [ { name: 'H2 Headline', element: 'h2' }, { name: 'H3 Headline', element: 'h3' }, { name: 'H4 Headline', element: 'h4' }, { name: 'Bold', element: 'strong' }, { name: 'Italic', element: 'em' }, { name: 'Underline', element: 'u' } ]
+            extraPlugins: 'youtube'
         description:
             toolbar: [ [ "Source", "-", "Bold", "Italic", '-', "Anchor", '-', 'PasteFromWord', '-', 'Undo', 'Redo', '-', "Maximize" ] ]
             filebrowserBrowseRoute: admin_orangegate_media_media_browser
@@ -207,8 +236,13 @@ ivory_ck_editor:
 
 oneup_uploader:
     mappings:
-        media:
+        media_image:
             frontend: blueimp
+            allowed_mimetypes: ["image/gif", "image/jpeg", "image/png"]
+            error_handler: orangegate.upload.error_handler
+        media_file:
+            frontend: blueimp
+            error_handler: orangegate.upload.error_handler
 
 symbio_orange_gate_translation:
     locales: %symbio.orangegate.locales%
@@ -221,6 +255,8 @@ parameters:
     sonata.page.admin.page.controller: SymbioOrangeGatePageBundle:PageAdmin
     sonata.page.admin.block.class: Symbio\OrangeGate\PageBundle\Admin\BlockAdmin
     sonata.page.request_listener.class: Symbio\OrangeGate\PageBundle\Listener\RequestListener
+    sonata.page.admin.shared_block.class: Symbio\OrangeGate\PageBundle\Admin\SharedBlockAdmin
+    sonata.page.admin.shared_block.controller: SymbioOrangeGatePageBundle:SharedBlockAdmin
     sonata.page.manager.site.class: Symbio\OrangeGate\PageBundle\Entity\SiteManager
     sonata.page.manager.page.class: Symbio\OrangeGate\PageBundle\Entity\PageManager
     sonata.page.manager.snapshot.class: Symbio\OrangeGate\PageBundle\Entity\SnapshotManager
@@ -234,10 +270,38 @@ parameters:
     sonata.page.site.selector.host_with_path.class: Symbio\OrangeGate\PageBundle\Site\HostPathSiteSelector
     sonata.page.block_interactor.class: Symbio\OrangeGate\PageBundle\Entity\BlockInteractor
     sonata.classification.admin.collection.class: Symbio\OrangeGate\ClassificationBundle\Admin\CollectionAdmin
+    sonata.classification.admin.context.class: Symbio\OrangeGate\ClassificationBundle\Admin\ContextAdmin
+    sonata.classification.admin.context.controller: SymbioOrangeGateClassificationBundle:ContextAdmin
+    sonata.classification.admin.category.class: Symbio\OrangeGate\ClassificationBundle\Admin\CategoryAdmin
+    sonata.classification.admin.category.controller: SymbioOrangeGateClassificationBundle:CategoryAdmin
+    sonata.classification.admin.collection.controller: SymbioOrangeGateClassificationBundle:CollectionAdmin
+    sonata.classification.manager.category.class: Symbio\OrangeGate\ClassificationBundle\Entity\CategoryManager
     sonata.user.admin.user.entity: Symbio\OrangeGate\UserBundle\Entity\User
     sonata.user.admin.group.entity: Symbio\OrangeGate\UserBundle\Entity\Group
     sonata.admin.object.manipulator.acl.admin.class: Symbio\OrangeGate\AdminBundle\Util\AdminObjectAclManipulator
     sonata.news.admin.post.entity: Symbio\OrangeGate\NewsBundle\Entity\Post
     sonata.news.admin.comment.entity: Symbio\OrangeGate\NewsBundle\Entity\Comment
-    sonata.media.admin.media.class: Symbio\OrangeGate\MediaBundle\Admin\MediaAdmin
+    sonata.media.admin.media.controller: SymbioOrangeGateMediaBundle:MediaAdmin
+    sonata.media.manager.media.class: Symbio\OrangeGate\MediaBundle\Entity\MediaManager
     sonata.media.resizer.simple.class: Symbio\OrangeGate\MediaBundle\Resizer\OrangeGateResizer
+    sonata.page.block.shared_block.class: Symbio\OrangeGate\PageBundle\Block\SharedBlockBlockService
+
+nelmio_cors:
+    defaults:
+        allow_credentials: false
+        allow_origin: []
+        allow_headers: []
+        allow_methods: []
+        expose_headers: []
+        max_age: 0
+    paths:
+        '^/api/':
+            allow_origin: ['*']
+            allow_headers: ['*']
+            allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+            max_age: 3600
+
+sensio_framework_extra:
+    request: { converters: true }
+    view:    { annotations: false }
+    router:  { annotations: true }

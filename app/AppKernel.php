@@ -41,10 +41,6 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
 
-            new FOS\RestBundle\FOSRestBundle(),
-            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle($this),
-
             // Sonata Standard Edition Bundles
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sonata\PageBundle\SonataPageBundle(),
@@ -54,7 +50,6 @@ class AppKernel extends Kernel
             // formatter
             //new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
-            new CoopTilleuls\Bundle\CKEditorSonataMediaBundle\CoopTilleulsCKEditorSonataMediaBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
 
@@ -81,6 +76,7 @@ class AppKernel extends Kernel
             new Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
 
+            // ORANGEGATE
             new Symbio\OrangeGate\UserBundle\SymbioOrangeGateUserBundle(),
             new Symbio\OrangeGate\PageBundle\SymbioOrangeGatePageBundle(),
             new Symbio\OrangeGate\NewsBundle\SymbioOrangeGateNewsBundle(),
@@ -90,6 +86,13 @@ class AppKernel extends Kernel
             new Symbio\OrangeGate\DoctrineORMAdminBundle\SymbioOrangeGateDoctrineORMAdminBundle(),
             new Symbio\OrangeGate\TimelineBundle\SymbioOrangeGateTimelineBundle(),
             new Symbio\OrangeGate\TranslationBundle\SymbioOrangeGateTranslationBundle(),
+
+            // REST API
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new Voryx\RESTGeneratorBundle\VoryxRESTGeneratorBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

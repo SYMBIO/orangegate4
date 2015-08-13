@@ -26,6 +26,7 @@ sonata_admin:
 
     templates:
         layout:  SymbioOrangeGateAdminBundle::standard_layout.html.twig
+        list:    SymbioOrangeGateAdminBundle:CRUD:list.html.twig
 
     assets:
         stylesheets:
@@ -70,7 +71,7 @@ sonata_admin:
             - 'bundles/sonataformatter/markitup/sets/textile/set.js'
             - 'bundles/sonataadmin/Admin.js'
             - 'bundles/sonataadmin/treeview.js'
-            - 'bundles/sonatapage/sonata-page.back.min.js'
+            - 'bundles/symbioorangegatepage/js/sonata-page.back.js'
             - 'bundles/symbioorangegatemedia/js/jquery-file-upload/jquery.iframe-transport.js'
             - 'bundles/symbioorangegatemedia/js/jquery-file-upload/jquery.fileupload.js'
 
@@ -93,6 +94,7 @@ sonata_admin:
                 items:
                     - sonata.page.admin.page
                     - sonata.page.admin.site
+                    - sonata.page.admin.shared_block
 
             sonata.admin.group.content:
                 label:           sonata_content
@@ -115,14 +117,14 @@ sonata_admin:
             #        - sonata.order.admin.order
             #        - sonata.product.admin.product
 
-            #sonata.admin.group.classification:
-            #    label:           sonata_classification
-            #    label_catalogue: SonataClassificationBundle
-            #    items:
-            #        - sonata.classification.admin.context
-            #        - sonata.classification.admin.category
-            #        - orangegate.classification.admin.tag
-            #        - sonata.classification.admin.collection
+            sonata.admin.group.classification:
+                label:           sonata_classification
+                label_catalogue: SonataClassificationBundle
+                items:
+                    - sonata.classification.admin.context
+                    - sonata.classification.admin.category
+                    #- orangegate.classification.admin.tag
+                    - sonata.classification.admin.collection
 
             sonata.admin.group.administration:
                 label:           sonata_administration

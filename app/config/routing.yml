@@ -13,6 +13,11 @@ _admin:
     resource: routing_admin.yml
     prefix:   /admin
 
+symbio_orange_gate_admin.audit:
+    resource: "@SymbioOrangeGateAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 admin_without_locale:
     pattern: /admin
     defaults:
