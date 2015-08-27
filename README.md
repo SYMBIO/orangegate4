@@ -3,7 +3,7 @@ OrangeGate4 CMS
 
 OrangeGate4 CMS is built upon the great Sonata Admin project.
 
-Instalation
+Installation
 ===========
 
 1. composer create-project symbio/orangegate4
