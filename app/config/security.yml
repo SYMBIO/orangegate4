@@ -26,7 +26,7 @@ security:
         in_memory:
             memory:
                 users:
-                    sugar: { password: GA_i2PXw, roles: 'ROLE_ADMIN' }
+                    admin: { password: changethispassword, roles: 'ROLE_ADMIN' }
 
     firewalls:
         # Disabling the security for the web debug toolbar, the profiler and Assetic.
