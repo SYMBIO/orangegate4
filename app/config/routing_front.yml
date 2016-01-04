@@ -34,6 +34,13 @@ sonata_media_media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
 
+orangegate_media:
+    resource: "@SymbioOrangeGateMediaBundle/Controller/MediaController.php"
+    type: annotation
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
 #sonata_customer:
 #    resource: @SonataCustomerBundle/Resources/config/routing/customer.xml
 #    prefix: /shop/user

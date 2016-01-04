@@ -19,10 +19,10 @@ sonata_block:
 
         # Builtin Block
         sonata.block.service.text:
-        sonata.block.service.container:
+        #sonata.block.service.container:
         #sonata.block.service.rss:
-        sonata.block.service.menu:
-        sonata.block.service.template:
+        #sonata.block.service.menu:
+        #sonata.block.service.template:
 
         # PageBundle's Blocks
         sonata.page.block.container:
@@ -35,16 +35,16 @@ sonata_block:
         sonata.page.block.shared_block:
 
         # MediaBundle's Blocks
-        sonata.media.block.media:
-        sonata.media.block.gallery:
-        sonata.media.block.feature_media:
+        #sonata.media.block.media:
+        #sonata.media.block.gallery:
+        #sonata.media.block.feature_media:
 
         # NewsBundle's Blocks
         #sonata.news.block.recent_comments:
         #sonata.news.block.recent_posts:
 
         # TimelineBundle's Blocks
-        sonata.timeline.block.timeline:
+        #sonata.timeline.block.timeline:
         sonata.timeline.block.timeline:
             contexts:   [admin]
 

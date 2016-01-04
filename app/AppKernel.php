@@ -71,8 +71,8 @@ class AppKernel extends Kernel
             new Spy\TimelineBundle\SpyTimelineBundle(),
             new Sonata\TimelineBundle\SonataTimelineBundle(),
 
+            // CMS RELATED
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
-            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Pix\SortableBehaviorBundle\PixSortableBehaviorBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
 
@@ -93,6 +93,8 @@ class AppKernel extends Kernel
             new Voryx\RESTGeneratorBundle\VoryxRESTGeneratorBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+
+            new Liip\ImagineBundle\LiipImagineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

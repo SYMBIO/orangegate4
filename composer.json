@@ -91,26 +91,19 @@
         "gedmo/doctrine-extensions": "dev-wip-v2.4.0",
         "pixassociates/sortable-behavior-bundle": "~0.1@dev",
         "oneup/uploader-bundle": "1.3.1",
-        "voryx/restgeneratorbundle": "dev-master"
+        "voryx/restgeneratorbundle": "dev-master",
+        "liip/imagine-bundle": "^1.3"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.2",
         "guzzle/guzzle": "~3.0",
-        "codeception/codeception": "*",
-        "behat/behat": "~2.4",
-        "behat/common-contexts": "*",
-        "behat/mink-extension": "~1.2",
-        "behat/mink-goutte-driver": "~1.0",
-        "behat/mink": "~1.5",
-        "behat/mink-browserkit-driver": "~1.1",
-        "behat/mink-selenium2-driver": "~1.1"
+        "codeception/codeception": "*"
     },
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
@@ -118,7 +111,6 @@
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]

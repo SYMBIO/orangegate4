@@ -105,7 +105,7 @@ sonata_admin:
                     #- orangegate.news.admin.comment
                     - orangegate.admin.token
                     - orangegate.media.admin.media
-                    #- orangegate.media.admin.gallery
+                    - orangegate.media.admin.gallery
                     #- sonata.comment.admin.thread
 
             #sonata.admin.group.ecommerce:
@@ -131,6 +131,7 @@ sonata_admin:
                 label_catalogue: SymbioOrangeGateAdminBundle
                 icon: '<i class="fa fa-gears"></i>'
                 items:
+                    - orangegate.admin.system_token
                     - orangegate.user.admin.user
                     - orangegate.user.admin.group
                     #- sonata.notification.admin.message

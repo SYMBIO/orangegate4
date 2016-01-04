@@ -23,7 +23,7 @@ set :update_vendors, true
 set :copy_vendors, false
 set :use_set_permissions, true
 
-logger.level = Logger::MAX_LEVEL
+#logger.level = Logger::MAX_LEVEL
 
 after "deploy:restart", "deploy:cleanup"
 
@@ -45,12 +45,12 @@ end
 
 after "deploy:rollback:cleanup", "symbio:apc:clear"
 
-before "symfony:composer:install" do
-	symbio.set_parameters
-end
-before "symfony:composer:update" do
-	symbio.set_parameters
-end
+#before "symfony:composer:install" do
+#	symbio.set_parameters
+#end
+#before "symfony:composer:update" do
+#	symbio.set_parameters
+#end
 
 namespace :deploy do
 	task :set_permissions, :except => { :no_release => true } do

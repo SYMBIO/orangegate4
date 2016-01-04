@@ -73,7 +73,7 @@ sonata_page:
         default:  { path: 'SonataPageBundle::layout.html.twig', name: 'default' }
 
     page_defaults:
-        homepage: { decorate: true, enabled: true }
+        #homepage: { decorate: true, enabled: true }
 
     #caches:
     #    esi:

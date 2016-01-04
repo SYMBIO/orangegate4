@@ -149,6 +149,7 @@ doctrine:
                 regexp: Symbio\OrangeGate\AdminBundle\DQL\Regexp
                 collate: Symbio\OrangeGate\AdminBundle\DQL\Collate
                 cast: Symbio\OrangeGate\AdminBundle\DQL\Cast
+                if: Symbio\OrangeGate\AdminBundle\DQL\IfElse
 
 # Menu Configuration
 knp_menu:
@@ -162,33 +163,22 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-lunetics_locale:
-    allowed_locales:
-        - en
-        - cs
-    guessing_order:
-        - query
-        - router
-        - session
-        - cookie
-        - browser
-    switcher:
-        template: SymbioOrangeGateAdminBundle:Core:language_switcher.html.twig
-
-# hearsay_require_js:
-#     require_js_src:      /bundles/cbredefault/js/vendor/requirejs/require.js
-#     initialize_template: HearsayRequireJSBundle::initialize.html.twig
-#     base_url:            js
-#     base_dir:            %kernel.root_dir%/../src/CBRE/DefaultBundle/Resources/public/js
-#     optimizer:
-#         path:                    %kernel.root_dir%/../src/CBREDefaultBundle/Resources/public/js/vendor/r.js/dist/r.js
-#         hide_unoptimized_assets: false
-#         almond_path:             ~
-
 ivory_ck_editor:
     plugins:
         youtube:
             path: "/bundles/symbioorangegateadmin/plugins/youtube/"
+            filename: "plugin.js"
+        lineutils:
+            path: "/bundles/symbioorangegateadmin/plugins/lineutils/"
+            filename: "plugin.js"
+        widget:
+            path: "/bundles/symbioorangegateadmin/plugins/widget/"
+            filename: "plugin.js"
+        image2:
+            path: "/bundles/symbioorangegateadmin/plugins/image2/"
+            filename: "plugin.js"
+        specialchar:
+            path: "/bundles/symbioorangegateadmin/plugins/specialchar/"
             filename: "plugin.js"
     default_config: default
     configs:
@@ -233,6 +223,23 @@ ivory_ck_editor:
             filebrowserImageUploadRouteParameters:
                 provider: sonata.media.provider.image
                 context: news
+        news:
+            toolbar: [[ "Format", "-", "Bold", "Italic", "Underline", "-", "Subscript", "Superscript", "RemoveFormat", "-", "NumberedList", "BulletedList", "-", "Outdent", "Indent", "-", "Image", "Youtube", "Link", "Unlink", "Anchor", "Table"], ["Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "-", "Undo", "Redo"], ["Maximize", "Source"] ]
+            filebrowserBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRoute: admin_orangegate_media_media_browser
+            filebrowserImageBrowseRouteParameters:
+                provider: sonata.media.provider.image
+                context: news
+            filebrowserUploadRoute: admin_orangegate_media_media_upload
+            filebrowserUploadRouteParameters:
+                provider: sonata.media.provider.file
+                context: news
+            filebrowserImageUploadRoute: admin_orangegate_media_media_upload
+            filebrowserImageUploadRouteParameters:
+                provider: sonata.media.provider.image
+                context: news
+            format_tags: "p;h2;h3;h4"
+            extraPlugins: 'youtube'
 
 oneup_uploader:
     mappings:
@@ -253,6 +260,7 @@ parameters:
     symbio.orangegate.locales: [cs, en]
     sonata.page.admin.page.class: Symbio\OrangeGate\PageBundle\Admin\PageAdmin
     sonata.page.admin.page.controller: SymbioOrangeGatePageBundle:PageAdmin
+    sonata.page.admin.snapshot.class: Symbio\OrangeGate\PageBundle\Admin\SnapshotAdmin
     sonata.page.admin.block.class: Symbio\OrangeGate\PageBundle\Admin\BlockAdmin
     sonata.page.request_listener.class: Symbio\OrangeGate\PageBundle\Listener\RequestListener
     sonata.page.admin.shared_block.class: Symbio\OrangeGate\PageBundle\Admin\SharedBlockAdmin

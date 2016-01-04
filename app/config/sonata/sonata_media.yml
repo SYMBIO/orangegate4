@@ -9,7 +9,22 @@ sonata_media:
         gallery_has_media:  Symbio\OrangeGate\MediaBundle\Entity\GalleryHasMedia
     default_context: news
     contexts:
+        gallery:
+            download:
+                strategy: sonata.media.security.public_strategy
+                mode: http
+
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                gallery_thumb: { width: 160, height: 160, quality: 100}
+
         news:
+            download:
+                strategy: sonata.media.security.public_strategy
+                mode: http
+
             providers:
                 - sonata.media.provider.image
                 - sonata.media.provider.file
@@ -18,6 +33,7 @@ sonata_media:
             formats:
                 abstract: { width: 220, height: 260, quality: 100}
                 wide:     { width: 820, quality: 100}
+                gallery_thumb: { width: 160, height: 160, quality: 100}
 
         user:
             providers:
@@ -45,7 +61,7 @@ sonata_media:
     cdn:
         # define the public base url for the uploaded media
         server:
-            path:     #insert path to media e.g. http://cbre.test.symbiodigital.com/uploads/media
+            path: /uploads/media #insert path to media e.g. http://cbre.test.symbiodigital.com/uploads/media
 
     filesystem:
         # define where the uploaded file will be stored
@@ -58,9 +74,68 @@ sonata_media:
         file:
             # the resizer must be set to false, otherwhise this can delete icon files from the fs
             resizer:    false
+            allowed_extensions:
+                - 'pdf'
+                - 'txt'
+                - 'rtf'
+                - 'doc'
+                - 'docx'
+                - 'xls'
+                - 'xlsx'
+                - 'ppt'
+                - 'pptx'
+                - 'odt'
+                - 'odg'
+                - 'odp'
+                - 'ods'
+                - 'odc'
+                - 'odf'
+                - 'odb'
+                - 'csv'
+                - 'xml'
+                - 'jpeg'
+                - 'jpg'
+                - 'png'
+                - 'gif'
+                - 'bmp'
+                - 'tiff'
+            allowed_mime_types:
+                - 'application/pdf'
+                - 'application/x-pdf'
+                - 'application/rtf'
+                - 'text/html'
+                - 'text/rtf'
+                - 'text/plain'
+                - 'application/excel'
+                - 'application/msword'
+                - 'application/vnd.ms-excel'
+                - 'application/vnd.ms-powerpoint'
+                - 'application/vnd.ms-powerpoint'
+                - 'application/vnd.oasis.opendocument.text'
+                - 'application/vnd.oasis.opendocument.graphics'
+                - 'application/vnd.oasis.opendocument.presentation'
+                - 'application/vnd.oasis.opendocument.spreadsheet'
+                - 'application/vnd.oasis.opendocument.chart'
+                - 'application/vnd.oasis.opendocument.formula'
+                - 'application/vnd.oasis.opendocument.database'
+                - 'application/vnd.oasis.opendocument.image'
+                - 'text/comma-separated-values'
+                - 'text/xml'
+                - 'application/xml'
+                - 'application/zip'
+                - 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                - 'image/jpeg'
+                - 'image/png'
+                - 'image/gif'
+                - 'image/bmp'
+                - 'image/x-ms-bmp'
+                - 'image/tiff'
+
         image:
            thumbnail: sonata.media.thumbnail.format          # default value
            resizer:   sonata.media.resizer.simple
+           allowed_extensions: ['jpg', 'png', 'jpeg', 'gif']
+           allowed_mime_types: ['image/pjpeg', 'image/jpeg', 'image/png', 'image/x-png', 'image/gif']
 #           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
 #            thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
         vimeo:
