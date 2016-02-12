@@ -131,6 +131,7 @@ sonata_admin:
                 label_catalogue: SymbioOrangeGateAdminBundle
                 icon: '<i class="fa fa-gears"></i>'
                 items:
+                    - orangegate.admin.language_catalogue
                     - orangegate.admin.system_token
                     - orangegate.user.admin.user
                     - orangegate.user.admin.group
