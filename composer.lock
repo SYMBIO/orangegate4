@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bc127cf7f637af4ed6544a8d40bac25f",
+    "hash": "5a511e4217236db227c0f103cebeebc2",
     "content-hash": "3544811aa7af622e01237a7207aef74b",
     "packages": [
         {
@@ -990,7 +990,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/8b05ef63be8c86b183d237becb1aeb908b7fc657",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/7ab492c6a65ebe7c0f4665bf96320bef4fb31b70",
                 "reference": "ed26638d87b8d4f726e97536689c8fe8d9a10f14",
                 "shasum": ""
             },
@@ -2403,7 +2403,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/4f8504404eb3d4f067eba9768922e04461a40cd0",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/96a6b9630e0f150f38ae167b3ef22955d8cdfab5",
                 "reference": "7c0d579ca58f1c7cb3747a84b681fe273f00ffec",
                 "shasum": ""
             },
@@ -3329,7 +3329,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pix-digital/pixSortableBehaviorBundle/zipball/863ff7be9b64a1df8d51d9c436e1495290e5a81e",
+                "url": "https://api.github.com/repos/pix-digital/pixSortableBehaviorBundle/zipball/8f014971a5ecfef71e1a7b2ed5804ea343f222c3",
                 "reference": "372e6e8ed12545fa24a676cbe7437504e6cc6aa3",
                 "shasum": ""
             },
@@ -3609,7 +3609,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/2e68c08ed1d8680c64f91e90d1119effc60811dd",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/a87b1d74227929bc877db30614e5036baaffeec8",
                 "reference": "5107cdb025f29913986f85a18297a49f60315847",
                 "shasum": ""
             },
@@ -3891,7 +3891,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataClassificationBundle/zipball/b67092a2b85414c1936ce50602f313f771a0ad8a",
+                "url": "https://api.github.com/repos/sonata-project/SonataClassificationBundle/zipball/87e36e2957a9c80dc17543bb019f11549eb092c3",
                 "reference": "0c37ac24a83302d973825070f3b9ddf67e1d8599",
                 "shasum": ""
             },
@@ -4132,7 +4132,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/e2044367a94de8c74239a1c987aa4c7428a2d565",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/e8eb83f7dc5b64113892cbf7367705864c651691",
                 "reference": "a883b10c09d136de617c1e53c2782648909a8c06",
                 "shasum": ""
             },
@@ -4325,7 +4325,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataFormatterBundle/zipball/bbdea528f5fec9b32a6a67dd63887e1285888348",
+                "url": "https://api.github.com/repos/sonata-project/SonataFormatterBundle/zipball/603e9c71dde190d980aa286f4937d7e94e0bd2d3",
                 "reference": "b854ef71eabc0785fadca2d3dd6b477bf63ca4b8",
                 "shasum": ""
             },
@@ -4503,7 +4503,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/24b988f92272487b79fbb4ad10af7cdbe9254184",
+                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/8362bbafc0cbe45b335848e54277d3d6a59a6655",
                 "reference": "76a32bf9bb0f9d6ba0d2a31ffedf27cb7d519901",
                 "shasum": ""
             },
@@ -4744,7 +4744,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataPageBundle/zipball/5517bc6dd3d83a99957fb3f8067aab18860e8561",
+                "url": "https://api.github.com/repos/sonata-project/SonataPageBundle/zipball/506f7f9ffcaab5e8f1331221a91ebff18b5af8d6",
                 "reference": "c1ba33adb260e00625ec71542a3e8c5c11ca85ad",
                 "shasum": ""
             },
@@ -4887,7 +4887,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataTimelineBundle/zipball/650a35bc21ca985d5cfd66f2391c4f6bf12bfdd2",
+                "url": "https://api.github.com/repos/sonata-project/SonataTimelineBundle/zipball/77b19fcca91e168e7b2c97759967f38850309722",
                 "reference": "69372ae23ae8f34c0056f39bded2d9753f4438d1",
                 "shasum": ""
             },
@@ -5187,12 +5187,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SYMBIO/orangegate4-admin-bundle.git",
-                "reference": "2098444af3abe70a9e19bda95ca0f8ef9726c104"
+                "reference": "af61517a0fe47db5af39cae6b196bac866126461"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SYMBIO/orangegate4-admin-bundle/zipball/2098444af3abe70a9e19bda95ca0f8ef9726c104",
-                "reference": "2098444af3abe70a9e19bda95ca0f8ef9726c104",
+                "url": "https://api.github.com/repos/SYMBIO/orangegate4-admin-bundle/zipball/af61517a0fe47db5af39cae6b196bac866126461",
+                "reference": "af61517a0fe47db5af39cae6b196bac866126461",
                 "shasum": ""
             },
             "require": {
@@ -5228,7 +5228,7 @@
                 "bootstrap",
                 "orangegate"
             ],
-            "time": "2015-12-02 10:01:30"
+            "time": "2016-01-18 13:56:00"
         },
         {
             "name": "symbio/orangegate4-classification-bundle",
@@ -5236,12 +5236,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SYMBIO/orangegate4-classification-bundle.git",
-                "reference": "add1bb4f775e30191d64d06654bcb36e147dde1f"
+                "reference": "c4bfb1d4292e8cefaacea410395d4ce2aedfffb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SYMBIO/orangegate4-classification-bundle/zipball/add1bb4f775e30191d64d06654bcb36e147dde1f",
-                "reference": "add1bb4f775e30191d64d06654bcb36e147dde1f",
+                "url": "https://api.github.com/repos/SYMBIO/orangegate4-classification-bundle/zipball/c4bfb1d4292e8cefaacea410395d4ce2aedfffb8",
+                "reference": "c4bfb1d4292e8cefaacea410395d4ce2aedfffb8",
                 "shasum": ""
             },
             "require": {
@@ -5279,7 +5279,7 @@
                 "bootstrap",
                 "orangegate"
             ],
-            "time": "2015-12-15 09:25:43"
+            "time": "2016-02-12 15:22:34"
         },
         {
             "name": "symbio/orangegate4-doctrine-orm-admin-bundle",
@@ -5337,12 +5337,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SYMBIO/orangegate4-media-bundle.git",
-                "reference": "1729b2e71d712bd55390b744cd42d1ac21ff2675"
+                "reference": "504b66bac4c229e9cb91f6ec4afe773dc537ab43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SYMBIO/orangegate4-media-bundle/zipball/1729b2e71d712bd55390b744cd42d1ac21ff2675",
-                "reference": "1729b2e71d712bd55390b744cd42d1ac21ff2675",
+                "url": "https://api.github.com/repos/SYMBIO/orangegate4-media-bundle/zipball/504b66bac4c229e9cb91f6ec4afe773dc537ab43",
+                "reference": "504b66bac4c229e9cb91f6ec4afe773dc537ab43",
                 "shasum": ""
             },
             "require": {
@@ -5380,7 +5380,7 @@
                 "bootstrap",
                 "orangegate"
             ],
-            "time": "2015-12-09 15:57:11"
+            "time": "2016-01-26 17:58:25"
         },
         {
             "name": "symbio/orangegate4-news-bundle",
@@ -5388,12 +5388,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SYMBIO/orangegate4-news-bundle.git",
-                "reference": "8807de9a6b559d1b70ec40d553afd82f1fd62f68"
+                "reference": "de023898db6c7edd757169293095d52f29f83748"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SYMBIO/orangegate4-news-bundle/zipball/8807de9a6b559d1b70ec40d553afd82f1fd62f68",
-                "reference": "8807de9a6b559d1b70ec40d553afd82f1fd62f68",
+                "url": "https://api.github.com/repos/SYMBIO/orangegate4-news-bundle/zipball/de023898db6c7edd757169293095d52f29f83748",
+                "reference": "de023898db6c7edd757169293095d52f29f83748",
                 "shasum": ""
             },
             "require": {
@@ -5433,7 +5433,7 @@
                 "bootstrap",
                 "orangegate"
             ],
-            "time": "2015-09-01 08:04:35"
+            "time": "2016-01-12 12:26:57"
         },
         {
             "name": "symbio/orangegate4-page-bundle",
@@ -5441,12 +5441,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SYMBIO/orangegate4-page-bundle.git",
-                "reference": "84fb69b77af1ba1f20ea762459c3471028812b7c"
+                "reference": "901e07478cafd8c82c49c2da884792dfe38c9db9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SYMBIO/orangegate4-page-bundle/zipball/84fb69b77af1ba1f20ea762459c3471028812b7c",
-                "reference": "84fb69b77af1ba1f20ea762459c3471028812b7c",
+                "url": "https://api.github.com/repos/SYMBIO/orangegate4-page-bundle/zipball/901e07478cafd8c82c49c2da884792dfe38c9db9",
+                "reference": "901e07478cafd8c82c49c2da884792dfe38c9db9",
                 "shasum": ""
             },
             "require": {
@@ -5484,7 +5484,7 @@
                 "bootstrap",
                 "orangegate"
             ],
-            "time": "2016-01-03 11:51:22"
+            "time": "2016-01-27 15:53:48"
         },
         {
             "name": "symbio/orangegate4-timeline-bundle",
@@ -5541,12 +5541,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/SYMBIO/orangegate4-translation-bundle.git",
-                "reference": "fd223f8bfb972e5f2f48614cc1c604bd73c39dbd"
+                "reference": "5d3ef23d1b8167b4413613a6044fe7b8deab3e1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SYMBIO/orangegate4-translation-bundle/zipball/fd223f8bfb972e5f2f48614cc1c604bd73c39dbd",
-                "reference": "fd223f8bfb972e5f2f48614cc1c604bd73c39dbd",
+                "url": "https://api.github.com/repos/SYMBIO/orangegate4-translation-bundle/zipball/5d3ef23d1b8167b4413613a6044fe7b8deab3e1d",
+                "reference": "5d3ef23d1b8167b4413613a6044fe7b8deab3e1d",
                 "shasum": ""
             },
             "require": {
@@ -5584,7 +5584,7 @@
                 "bootstrap",
                 "orangegate"
             ],
-            "time": "2015-09-30 12:26:31"
+            "time": "2016-02-12 16:56:47"
         },
         {
             "name": "symbio/orangegate4-user-bundle",
